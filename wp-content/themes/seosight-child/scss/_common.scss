@@ -1,0 +1,36 @@
+@charset "utf-8";
+@import "variables";
+@import "mixins";
+
+/* -----------------------------------------------------------
+	common
+----------------------------------------------------------- */
+body {
+	font-family: $font_main;
+	color: $body-color;
+}
+img {
+	max-width: 100%;
+}
+a,
+button,
+.btn {
+	transition: all 0.4s ease;
+}
+.over {
+	transition: all 0.4s ease;
+	&:hover {
+		opacity: 0.7;
+	}
+}
+.container {
+	@include mq(xxl) {
+		max-width: 1400px;
+	}
+}
+.list-style-none {
+	list-style: none !important;
+}
+.text-primary {
+	color: $primary !important;
+}

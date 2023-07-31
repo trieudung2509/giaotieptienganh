@@ -1,0 +1,16 @@
+[26-Oct-2022 13:09:43 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php on line 6
+[29-Nov-2022 11:40:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php on line 6
+[03-Dec-2022 17:32:05 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php on line 6
+[05-Dec-2022 08:55:55 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php on line 6
+[24-Dec-2022 23:05:53 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/before.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/before.php on line 6
+[27-Dec-2022 05:08:08 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/before.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/before.php on line 6
+[27-Jan-2023 04:35:15 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Processor' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/processor/after.php on line 6

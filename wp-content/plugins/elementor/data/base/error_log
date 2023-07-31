@@ -1,0 +1,57 @@
+[06-Mar-2022 01:45:27 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[06-Mar-2022 04:09:57 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[17-Mar-2022 18:24:26 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[19-Mar-2022 06:32:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[23-Oct-2022 04:41:58 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[13-Nov-2022 18:01:41 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[16-Nov-2022 04:22:19 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[20-Nov-2022 03:14:42 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[22-Nov-2022 21:47:37 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[11-Dec-2022 01:03:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[11-Dec-2022 01:09:51 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[13-Dec-2022 02:23:28 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[13-Dec-2022 02:23:40 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[15-Dec-2022 04:18:50 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[15-Dec-2022 04:19:42 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[17-Dec-2022 21:55:35 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[17-Dec-2022 21:55:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[20-Dec-2022 02:57:08 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[20-Dec-2022 02:57:35 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6
+[20-Jan-2023 16:21:12 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'WP_REST_Controller' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php:8
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/controller.php on line 8
+[23-Jan-2023 13:33:55 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Data\Base\Endpoint' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/data/base/sub-endpoint.php on line 6

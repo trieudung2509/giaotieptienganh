@@ -1,0 +1,25 @@
+@charset "utf-8";
+@import "variables";
+@import "mixins";
+
+/* -----------------------------------------------------------
+	heading
+----------------------------------------------------------- */
+.title-lg {
+	font-size: 48px;
+	line-height: (61 / 48);
+	font-weight: bold;
+	color: #1a202c;
+	text-align: center;
+	margin: 0;
+	@include mq(max_lg) {
+		font-size: 42px;
+	}
+	@include mq(max_md) {
+		font-size: 38px;
+	}
+	@include mq(max_sm) {
+		font-size: 28px;
+	}
+
+}

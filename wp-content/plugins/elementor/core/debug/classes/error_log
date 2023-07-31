@@ -1,0 +1,8 @@
+[11-Apr-2023 10:46:08 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Core\Debug\Classes\Inspection_Base' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/core/debug/classes/htaccess.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/core/debug/classes/htaccess.php on line 6
+[13-Apr-2023 21:58:44 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught Error: Class 'Elementor\Core\Debug\Classes\Inspection_Base' not found in /home/qeqkrsec/public_html/wp-content/plugins/elementor/core/debug/classes/theme-missing.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/qeqkrsec/public_html/wp-content/plugins/elementor/core/debug/classes/theme-missing.php on line 6

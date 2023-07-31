@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-content/themes/
+Disallow: /wp-content/uploads/
+Disallow: /wp-content/cache/
+Disallow: /wp-content/plugins/elementor-seosight/assets/css/seotheme.css
+
+Sitemap: https://giaotieptienganh.com.vn/sitemap_index.xml

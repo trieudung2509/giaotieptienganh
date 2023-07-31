@@ -1,0 +1,224 @@
+@charset "utf-8";
+@import "variables";
+@import "mixins";
+
+/* -----------------------------------------------------------
+	.main-footer
+----------------------------------------------------------- */
+.main-footer {
+  overflow: hidden;
+  background: #362f2a;
+  color: white;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover,
+    &.active {
+      color: $primary;
+    }
+  }
+  .footer-nav {
+    @include mq(max_sm) {
+      padding: 15px 0 10px;
+    }
+  }
+  .nav {
+    &-link {
+      padding: 14px 15px;
+      @include mq(max_sm) {
+        padding: 6px 15px;
+      }
+      @include mq(max_xs) {
+        padding: 6px 9px;
+      }
+    }
+  }
+  .footer-main {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 0px;
+    @include mq(max_sm) {
+      padding: 25px 0;
+    }
+  }
+  .footer-address {
+    margin-bottom: 10px;
+    display: flex;
+    @include mq(max_sm) {
+      margin-bottom: 0;
+    }
+
+    .address-col {
+      width: calc(100% / 5);
+      @include mq(max_sm) {
+        width: 100%;
+      }
+    }
+  }
+
+  .footer-download-wrapper {
+    border-top: 1px solid #3d3a39;
+    margin-top: 30px;
+    @include mq(max_sm) {
+      text-align: center;
+    }
+  }
+  .footer-download {
+    max-width: 432px;
+    margin: 0 auto;
+    padding: 20px 0;
+    @include mq(max_sm) {
+      margin: 0 auto;
+    }
+    @include mq(max_xs) {
+      border-radius: 0;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0 0 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 -10px;
+      li {
+        padding: 0 10px;
+        @include mq(max_sm) {
+          max-width: 50%;
+        }
+        a {
+          display: block;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .footer-copyright {
+    border-top: 1px solid #3d3a39;
+    padding: 30px 0 0;
+    @include mq(max_sm) {
+      padding-top: 20px;
+    }
+  }
+  .col-social {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    @include mq(max_sm) {
+      align-items: center;
+    }
+  }
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 30px;
+    @include mq(max_sm) {
+      margin-bottom: 20px;
+    }
+    a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 16px;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  .txt-copyright {
+    font-size: 14px;
+    color: #bebdbd;
+    p {
+      margin: 0;
+    }
+  }
+  .footer-logo-sp {
+    margin-bottom: 20px;
+  }
+}
+
+.list-country-footer {
+  width: 100%;
+  display: flex;
+  gap: 34px;
+
+  @include mq(max_md) {
+    flex-direction: column;
+    gap: 0;
+  }
+  .country-item {
+    width: calc(100% / 5);
+    display: flex;
+    flex-direction: column;
+
+    @include mq(max_md) {
+      width: 100%;
+      margin-bottom: 16px;
+      flex-direction: row;
+    }
+
+    svg {
+      path {
+        @include mq(max_md) {
+          fill: #ff6d03 !important;
+        }
+      }
+    }
+
+    .country-info {
+      margin-top: 16px;
+
+      @include mq(max_md) {
+        margin-top: 0;
+        margin-left: 12px;
+      }
+
+      .country-name {
+        color: #fff;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 6px;
+
+        @include mq(max_md) {
+          color: #ff6d03 !important;
+        }
+      }
+
+      .address {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; /* 137.5% */
+        @include mq(max_md) {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
+
+.footer-email {
+  .item-icon-text {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    .text {
+      margin-left: 12px;
+    }
+
+    svg {
+      path {
+        @include mq(max_md) {
+          fill: #ff6d03 !important;
+        }
+      }
+    }
+  }
+}

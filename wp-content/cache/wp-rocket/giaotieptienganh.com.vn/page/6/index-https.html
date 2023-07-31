@@ -1,0 +1,1030 @@
+    <!DOCTYPE html>
+<html lang="vi">
+    <head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="pingback" href="https://giaotieptienganh.com.vn/xmlrpc.php">
+        <link rel="alternate" href="https://giaotieptienganh.com.vn/page/6/" hreflang="vi-vn" />
+		<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.2 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Học giao tiếp tiếng anh | Cách phát âm + Mẫu câu thông dụng</title><style id="rocket-critical-css">.aligncenter{clear:both}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);-webkit-clip-path:inset(50%);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.elementor-column-gap-default>.elementor-row>.elementor-column>.elementor-element-populated{padding:10px}@media (max-width:767px){.elementor-column{width:100%}}.screen-reader-text{position:absolute;top:-10000em;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}.elementor-clearfix:after{content:"";display:block;clear:both;width:0;height:0}.elementor{-webkit-hyphens:manual;-ms-hyphens:manual;hyphens:manual}.elementor *,.elementor :after,.elementor :before{-webkit-box-sizing:border-box;box-sizing:border-box}.elementor img{height:auto;max-width:100%;border:none;-webkit-border-radius:0;border-radius:0;-webkit-box-shadow:none;box-shadow:none}:root{--page-title-display:block}.elementor-section{position:relative}.elementor-section .elementor-container{display:-webkit-box;display:-ms-flexbox;display:flex;margin-right:auto;margin-left:auto;position:relative}@media (max-width:1024px){.elementor-section .elementor-container{-ms-flex-wrap:wrap;flex-wrap:wrap}}.elementor-section.elementor-section-boxed>.elementor-container{max-width:1140px}.elementor-row{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex}@media (max-width:1024px){.elementor-row{-ms-flex-wrap:wrap;flex-wrap:wrap}}.elementor-widget-wrap{position:relative;width:100%;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-line-pack:start;align-content:flex-start}.elementor:not(.elementor-bc-flex-widget) .elementor-widget-wrap{display:-webkit-box;display:-ms-flexbox;display:flex}.elementor-widget-wrap>.elementor-element{width:100%}.elementor-widget{position:relative}.elementor-widget:not(:last-child){margin-bottom:20px}.elementor-column{min-height:1px}.elementor-column,.elementor-column-wrap{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex}.elementor-column-wrap{width:100%}@media (min-width:768px){.elementor-column.elementor-col-50{width:50%}.elementor-column.elementor-col-100{width:100%}}@media (max-width:767px){.elementor-column{width:100%}}.elementor-kit-1929{--e-global-color-primary:#6EC1E4;--e-global-color-secondary:#54595F;--e-global-color-text:#7A7A7A;--e-global-color-accent:#61CE70;--e-global-color-7baef719:#4054B2;--e-global-color-71bfc9e8:#23A455;--e-global-color-4c5352ab:#000;--e-global-color-61db1ee7:#FFF;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500}.elementor-section.elementor-section-boxed>.elementor-container{max-width:1200px}.elementor-widget:not(:last-child){margin-bottom:20px}@media (max-width:1024px){.elementor-section.elementor-section-boxed>.elementor-container{max-width:1024px}}@media (max-width:767px){.elementor-section.elementor-section-boxed>.elementor-container{max-width:767px}}.elementor-62 .elementor-element.elementor-element-ab94dbc:not(.elementor-motion-effects-element-type-background){background-color:#ECF5F5}.elementor-62 .elementor-element.elementor-element-4f1e4ed .heading-title{color:#2F2C2C}.elementor-62 .elementor-element.elementor-element-4daee21>.elementor-widget-container{margin:35px 0px 0px 0px}.elementor-62 .elementor-element.elementor-element-a76d24c{margin-top:-51px;margin-bottom:0px}.elementor-62 .elementor-element.elementor-element-5ce58ba .heading-title{font-size:37px}.elementor-62 .elementor-element.elementor-element-5ce58ba>.elementor-widget-container{margin:40px 0px -20px 0px}*{-webkit-box-sizing:border-box;box-sizing:border-box}.container:before,.container:after,.row:before,.row:after{display:table;content:" ";width:100%}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:710px}}@media (min-width:992px){.container{width:965px}}@media (min-width:1200px){.container{width:1200px}}.row{margin-right:-15px;margin-left:-15px}.col-sm-12,.col-md-12,.col-lg-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px}@media (min-width:1200px){.col-lg-12{float:left}.col-lg-12{width:100%}}@media (min-width:800px) and (max-width:1199px){.col-md-12{float:left}.col-md-12{width:100%}}:focus{outline:0}:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}button::-moz-focus-inner{padding:0;border:0}:root{--primary-accent-color:#4cc2c0;--secondary-accent-color:#f15b26;--header-font-color:#595959;--ss-headings-color:#2f2c2c;--ss-body-font-color:#595959;--ss-borders-color:#edf2f7;--global-link-color:#2f2c2c;--ss-light-gray-color:#edf2f7;--white-color:#fff;--ss-body-font-family:"Nunito", Arial, "Helvetica Neue", Helvetica, serif;--ss-headings-font:"Nunito", Arial, "Helvetica Neue", Helvetica, serif}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}strong{font-weight:bolder}img{border-style:none}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}button{-webkit-appearance:button}button::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring{outline:1px dotted ButtonText}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{scroll-behavior:smooth}@media screen and (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}body{color:var(--ss-body-font-color);font-family:var(--ss-body-font-family);font-size:18px;font-weight:400;line-height:1.5}@media (max-width:800px){body{font-size:14px}}img{max-width:100%;height:auto;display:inline-block;vertical-align:middle}a{text-decoration:none;color:var(--global-link-color)}p{margin:0 0 .75em;font-size:18px}@media (max-width:800px){p{font-size:14px}}input::-webkit-input-placeholder{color:#595959}input:-moz-placeholder{color:#595959}input:-ms-input-placeholder{color:#595959}input{box-shadow:none}input:invalid{box-shadow:none}input:-moz-submit-invalid{box-shadow:none}input:-moz-ui-invalid{box-shadow:none}.screen-reader-text{clip:rect(1px,1px,1px,1px);position:absolute!important;height:1px;width:1px;overflow:hidden}h1,.h1{font-size:48px;font-weight:400;color:var(--ss-headings-color);font-family:var(--ss-headings-font);margin:.5em 0;line-height:1.1em}@media (max-width:800px){h1,.h1{font-size:40px}}@media (max-width:640px){h1,.h1{font-size:36px}}@media (max-width:480px){h1,.h1{font-size:30px}}@media (max-width:360px){h1,.h1{font-size:24px}}h2{margin:.5em 0;font-size:42px;line-height:1.15em;font-weight:400;color:var(--ss-headings-color);font-family:var(--ss-headings-font)}@media (max-width:800px){h2{font-size:36px}}@media (max-width:570px){h2{font-size:32px}}@media (max-width:480px){h2{font-size:26px}}ul{padding:0;margin:0}p{margin:0 0 1em 0}.entry-content:after,.entry-content:before{content:"";display:table;table-layout:fixed}.entry-content:after{clear:both}.full-block-link{position:absolute;left:0;right:0;top:0;bottom:0}.page-builder-wrap{overflow-x:hidden}.list{list-style:none;padding:0;margin:0}.header{position:relative;padding:0;background:#fff;width:100%;z-index:20;left:0;color:#2f2c2c;min-height:60px}@media (max-width:1200px){.header>.container{width:100%}}.header .logo{margin-bottom:0;margin-right:10px}@media (max-width:992px){.header .logo{order:1}}.nav-add{padding:0;margin:0;line-height:1;display:flex;align-items:center;margin-left:40px}@media (max-width:992px){.nav-add{margin-left:auto;padding:13px 16px}}.logo{position:relative;margin-bottom:20px;overflow:hidden;max-height:unset;display:flex;align-items:center}.logo img{margin-right:15px}.stunning-header{padding:60px 0;position:relative;background-position:center center;color:#fff}@media (max-width:768px){.stunning-header{padding:40px 0}}.stunning-header-content{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:15;padding:0 15px}.stunning-header-title{color:inherit;margin:0;word-wrap:break-word}@media (max-width:800px){.stunning-header-title{font-size:40px}}@media (max-width:640px){.stunning-header-title{font-size:36px}}@media (max-width:480px){.stunning-header-title{font-size:30px}}@media (max-width:360px){.stunning-header-title{font-size:24px}}.stunning-header-custom .stunning-header-title{color:inherit!important}.content-wrapper{position:relative;overflow:hidden;z-index:2}.elementor-widget:not(:last-child){margin-bottom:30px}.crumina-module.single-image img.aligncenter{margin:0 auto}button{background-color:var(--primary-accent-color);color:inherit}input{padding:19px 40px;border-color:transparent;font-size:16px;color:#595959;margin-bottom:30px;border-radius:50px;background-color:var(--ss-light-gray-color);width:100%}body:before{content:'';display:block;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(47,44,44,0.85);opacity:0;z-index:-999}.popup-search{width:auto;padding:40px 30px 10px 30px;border-radius:5px;position:absolute;top:38px;right:0;left:auto;background-color:#fff;z-index:111;box-shadow:15px 15px 30px rgba(0,0,0,0.16);visibility:hidden;opacity:0;max-height:0}@media (max-width:460px){.popup-search{padding:20px}}.popup-search .search-btn{display:inline-block;background-color:#2f2c2c;padding:20px 5px;border-radius:0 50px 50px 0;font-size:15px;text-transform:uppercase;position:relative;color:#fff;width:60px;height:64px}.popup-search .search-inline{position:relative;margin-bottom:30px}.popup-search .search-inline input{width:100%;margin-bottom:0}@media (max-width:460px){.popup-search .search-inline input{margin-bottom:0}}.popup-search .search-inline .search-btn{position:absolute;right:0;top:0;text-align:center;height:100%}.popup-search .search-inline .search-btn i{margin-left:0}.align-center,.aligncenter{text-align:center;margin:0 auto 20px}.align-left{text-align:left}img.aligncenter{display:block;margin:20px auto}.navigation{display:flex;align-items:initial;width:100%;line-height:initial;box-sizing:border-box}@media (min-width:992px){.navigation{height:auto}}.navigation *,.navigation *:before,.navigation *:after{box-sizing:border-box;text-decoration:none}.navigation-header{min-width:100%;display:flex;align-items:center;justify-content:space-between}@media (min-width:992px){.navigation-header{display:none}}.navigation-body{width:100%;height:100%;position:fixed;top:0;left:-100%;overflow-x:hidden;overflow-y:auto;background-color:#fff;z-index:20000}@media (min-width:500px){.navigation-body{width:320px}}@media (min-width:992px){.navigation-body{display:flex;align-items:center;width:100%;position:relative;left:auto;overflow:visible;z-index:auto;background-color:transparent;flex-wrap:wrap}}@media (min-width:992px){.navigation-justified .navigation-body{justify-content:space-between}}.navigation-body-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:solid 1px #f0f0f0}@media (min-width:992px){.navigation-body-header{border:none;padding:5px 0}}.navigation-body-close-button{display:flex;justify-content:center;align-items:center;width:30px;height:30px;margin-left:auto;padding-bottom:2px;line-height:initial;text-align:center;font-size:25px;color:var(--header-font-color)}@media (min-width:992px){.navigation-body-close-button{display:none}}.navigation-body-section{width:auto;padding:0;flex-direction:column}@media (min-width:992px){.navigation-body-section{display:inline-flex;flex-direction:row;align-items:center}}.navigation-button-toggler{display:flex;align-items:center;justify-content:center;width:60px;height:60px}.navigation-button-toggler .hamburger-icon{width:20px;height:2px;display:inline-block;font-style:normal;color:var(--header-font-color);box-shadow:inset 0 0 0 32px,0 -6px,0 6px}.navigation-menu{width:100%;margin:0;padding:0;list-style:none;font-size:0rem;display:inline-block}@media (min-width:992px){.navigation-menu{width:auto;display:flex}.navigation .navigation-menu{-ms-grid-row-align:stretch;align-self:stretch}}.navigation-item{width:100%;margin:0;display:inline-flex;flex-direction:column;justify-content:center}@media (min-width:992px){.navigation-item{width:auto}}.navigation-link{width:100%;padding:13px 16px;display:flex;align-items:center;position:relative;font-size:18px;color:var(--header-font-color);text-decoration:none!important;border-bottom:solid 1px #f0f0f0;font-weight:400}.navigation-link:visited{color:var(--header-font-color)}@media (min-width:992px){.navigation-item:last-child .navigation-link{border-top:none;border-bottom:none}}@media (min-width:992px){.navigation-link{padding:0;line-height:1;border:none}}.navigation-item{margin:0 15px;position:relative}.navigation-menu>.navigation-item{padding:35px 0}.navigation-menu>li>a.navigation-link:before{content:'';display:block;width:80%;height:2px;border-top:2px solid;border-top-color:var(--primary-accent-color);position:absolute;right:0;bottom:-5px;opacity:0}.navigation-menu>li>a.navigation-link:after{content:'';display:block;position:absolute;width:15%;height:2px;border-top:2px solid;border-top-color:var(--primary-accent-color);left:0;bottom:-5px;opacity:0}.navigation-menu>li.current-menu-item>a:before,.navigation-menu>li.current-menu-item>a:after{opacity:1}.navigation-menu>li.current-menu-item,.navigation-menu>li.current-menu-item a,.navigation-menu>li.current-menu-item a,.navigation-menu>li.current-menu-item{color:var(--primary-accent-color)}.navigation-menu>li>a:before,.navigation-menu>li>a:after{border-top-color:var(--primary-accent-color)}@media (max-width:992px){.navigation-menu>li>a:after,.navigation-menu>li>a:before,.navigation-menu>li.current-menu-item>a:before,.navigation-menu>li.current-menu-item>a:after{display:none}.navigation-menu>.navigation-item{padding:0}.navigation-item{margin:0}}.crumina-heading{position:relative}.crumina-heading .title-text-wrap{position:relative;z-index:5}.crumina-heading .title-text-wrap>*{display:inline-block;vertical-align:middle;margin-top:0;margin-bottom:0}.crumina-heading>*:last-child{margin-bottom:0}.crumina-heading>*:first-child{margin-top:0}.heading-title{margin-bottom:10px}@font-face{font-family:'seosight';src:url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.ttf) format('truetype'),url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.woff) format('woff'),url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.svg#seosight) format('svg');font-weight:normal;font-display:swap;font-style:normal}[class^="seoicon-"]{font-family:'seosight'!important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.seoicon-loupe:before{content:"\e920"}.navigation-logo img{width:190px}.logo img{margin-top:9px}.elementor-section:not(.elementor-inner-section){padding:20px 0 20px!important}h2{font-size:25px;font-weight:600}input{border-radius:10px;padding:19px 10px}body .full-block-link{text-indent:-9999px}@media only screen and (max-width:800px){p,ul li,span,body{font-size:18px}}@media only screen and (max-width:767px){.navigation-logo img{width:150px;margin-top:15px;margin-bottom:10px}#site-header{border-top:6px solid #f52806e3}.home .elementor-section.elementor-top-section.elementor-element.elementor-element-ab94dbc.elementor-section-boxed.elementor-section-height-default{padding-top:0!important;margin-top:-10px}.home h2.heading-title{font-size:23px!important;text-align:left;float:left}body .stunning-header-title{font-size:25px;line-height:32px}body h2{font-size:23px;line-height:32px}body .elementor-widget:not(:last-child){margin-bottom:20px}.home #primary{padding-top:10px}}</style><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400%7CRoboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=vietnamese&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400%7CRoboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=vietnamese&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="preload" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400%7CRoboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=vietnamese&#038;display=swap" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" /></noscript><link rel="preload" href="https://giaotieptienganh.com.vn/wp-content/cache/min/1/577b72777ca67cfd1e6597b2614cd8f4.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all" data-minify="1" />
+	<meta name="description" content="Khóa học giao tiếp tiếng Anh hiệu quả và tốt nhất, luyện tập kỹ năng nghe – nói và nâng cao tiếng Anh giao tiếp, xóa mù tiếng Anh." />
+	<link rel="canonical" href="https://giaotieptienganh.com.vn/" />
+	<meta property="og:locale" content="vi_VN" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Học giao tiếp tiếng anh | Cách phát âm + Mẫu câu thông dụng" />
+	<meta property="og:description" content="Khóa học giao tiếp tiếng Anh hiệu quả và tốt nhất, luyện tập kỹ năng nghe – nói và nâng cao tiếng Anh giao tiếp, xóa mù tiếng Anh." />
+	<meta property="og:url" content="https://giaotieptienganh.com.vn/" />
+	<meta property="og:site_name" content="Học Giao Tiếp Tiếng Anh" />
+	<meta property="article:modified_time" content="2021-12-07T04:28:12+00:00" />
+	<meta property="og:image" content="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh.jpg" />
+	<meta property="og:image:width" content="500" />
+	<meta property="og:image:height" content="333" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Ước tính thời gian đọc" />
+	<meta name="twitter:data1" content="21 phút" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://giaotieptienganh.com.vn/#website","url":"https://giaotieptienganh.com.vn/","name":"H\u1ecdc Giao Ti\u1ebfp Ti\u1ebfng Anh","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://giaotieptienganh.com.vn/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"vi"},{"@type":"ImageObject","@id":"https://giaotieptienganh.com.vn/#primaryimage","inLanguage":"vi","url":"https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh.jpg","contentUrl":"https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh.jpg","width":500,"height":333,"caption":"H\u1ecdc giao ti\u1ebfp ti\u1ebfng Anh qua \u1ee9ng d\u1ee5ng Bitu"},{"@type":"WebPage","@id":"https://giaotieptienganh.com.vn/#webpage","url":"https://giaotieptienganh.com.vn/","name":"H\u1ecdc giao ti\u1ebfp ti\u1ebfng anh | C\u00e1ch ph\u00e1t \u00e2m + M\u1eabu c\u00e2u th\u00f4ng d\u1ee5ng","isPartOf":{"@id":"https://giaotieptienganh.com.vn/#website"},"primaryImageOfPage":{"@id":"https://giaotieptienganh.com.vn/#primaryimage"},"datePublished":"2020-01-14T10:17:41+00:00","dateModified":"2021-12-07T04:28:12+00:00","description":"Kh\u00f3a h\u1ecdc giao ti\u1ebfp ti\u1ebfng Anh hi\u1ec7u qu\u1ea3 v\u00e0 t\u1ed1t nh\u1ea5t, luy\u1ec7n t\u1eadp k\u1ef9 n\u0103ng nghe \u2013 n\u00f3i v\u00e0 n\u00e2ng cao ti\u1ebfng Anh giao ti\u1ebfp, x\u00f3a m\u00f9 ti\u1ebfng Anh.","breadcrumb":{"@id":"https://giaotieptienganh.com.vn/#breadcrumb"},"inLanguage":"vi","potentialAction":[{"@type":"ReadAction","target":["https://giaotieptienganh.com.vn/"]}]},{"@type":"BreadcrumbList","@id":"https://giaotieptienganh.com.vn/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin Học Giao Tiếp Tiếng Anh &raquo;" href="https://giaotieptienganh.com.vn/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Dòng phản hồi Học Giao Tiếp Tiếng Anh &raquo;" href="https://giaotieptienganh.com.vn/comments/feed/" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+
+
+<style id='elementor-frontend-inline-css' type='text/css'>
+@font-face{font-family:eicons;src:url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5.10.0);src:url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5.10.0#iefix) format("embedded-opentype"),url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff2?5.10.0) format("woff2"),url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff?5.10.0) format("woff"),url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.ttf?5.10.0) format("truetype"),url(https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.svg?5.10.0#eicon) format("svg");font-weight:400;font-style:normal}
+</style>
+
+
+
+
+
+
+
+
+<style id='seosight-theme-style-inline-css' type='text/css'>
+header .navigation-menu li a{font-weight:400;font-style:normal;} logo, .logo{font-weight:400;font-style:normal;} body, .body{font-family:"Varela Round", sans-serif;color:#4e4e4e;font-weight:normal;} h1, .h1{font-weight:400;font-style:normal;} h2, .h2{font-weight:400;font-style:normal;} h3, .h3{font-weight:400;font-style:normal;} h4, .h4{font-weight:400;font-style:normal;} h5, .h5{font-weight:400;font-style:normal;} h6, .h6{font-weight:400;font-style:normal;} 
+</style>
+
+
+<style id='seosight-theme-blocks-inline-css' type='text/css'>
+.elementor-section:not(.elementor-inner-section) , .kc_row:not(.kc_row_inner) , .medium-padding120 {padding: 80px 0 80px;}#subscribe-section{background-image: url("https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/bg-21.png");;} #stunning-header{background-image: url("https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/bg-hta.jpg");}:root{--primary-accent-color: #f54d06;--secondary-accent-color: #f54d06;--global-link-color: #014b92;}
+</style>
+
+
+
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.4.4' id='font-awesome-4-shim-js' defer></script>
+<link rel="https://api.w.org/" href="https://giaotieptienganh.com.vn/wp-json/" /><link rel="alternate" type="application/json" href="https://giaotieptienganh.com.vn/wp-json/wp/v2/pages/62" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://giaotieptienganh.com.vn/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://giaotieptienganh.com.vn/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.7" />
+<link rel='shortlink' href='https://giaotieptienganh.com.vn/' />
+	<style type="text/css" id="custom-background-css">
+		body { background-color: #fff; }
+		body .content-wrapper { background-color: #fff; }
+	</style>
+	<link rel="icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" />
+<meta name="msapplication-TileImage" content="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script><script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "EducationalOrganization",
+"name": "Học Giao Tiếp Tiếng Anh",
+"alternateName": "hocgiaotieptienganh",
+"url": "https://giaotieptienganh.com.vn/",
+"logo": "https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/logo-hgtta.png",
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "0981115411",
+"contactType": "office",
+"areaServed": "VN",
+"availableLanguage": "Vietnamese"
+},
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Tầng 10, Tháp D, Tòa Gold Tower, số 275 Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân",
+"addressLocality": "Hà Nội",
+"postalCode": "100000",
+"addressCountry": "VN"
+  },
+"sameAs": [
+"https://giaotieptienganhcomvn.blogspot.com/",
+"https://about.me/hocgiaotieptienganh",
+"https://draft.blogger.com/profile/11655909553425309110",
+"https://www.youtube.com/channel/UCA9Klq9AfZ10C6mbZ9AMLww",
+"https://www.linkedin.com/in/hocgiaotieptienganh/",
+"https://vi.gravatar.com/hocgiaotieptienganh",
+"https://www.pinterest.com/giaotieptienganhcomvn",
+"https://www.instapaper.com/p/9086494",
+"https://hocgiaotieptienganhh.weebly.com/",
+"https://www.diigo.com/profile/giaotieptienganh",
+"https://hocgiaotieptienganh.tumblr.com/",
+"https://www.flickr.com/people/193110917@N02/",
+"https://www.google.com/maps/place/H%E1%BB%8Dc+Giao+Ti%E1%BA%BFp+Ti%E1%BA%BFng+Anh+Hi%E1%BB%87u+Qu%E1%BA%A3+Ch%E1%BA%A5t+L%C6%B0%E1%BB%A3ng/@20.995881,105.804166,13z/data=!4m5!3m4!1s0x0:0x27ca877492c2496e!8m2!3d21.024297!4d105.7893758?hl=vi"
+]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"name": "Nguyễn Hoàng Long",
+"alternateName": "Nguyễn Hoàng Long",
+"nationality": "Việt Nam",
+"birthPlace" : {
+  "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+    "addressLocality": "Số 3 Ngõ 63 Ngách 30/11/23 Đường Lê Đức Thọ, Phường Mỹ Đình 2, Quận Nam Từ Liêm",
+    "addressRegion": "Hà Nội",
+        "addressCountry": "Việt Nam"
+  }
+},
+"affiliation": [
+  {
+    "@type": "Organization",
+    "name": "Học Giao Tiếp Tiếng Anh",
+    "sameAs": [
+      "https://scholar.google.com/citations?hl=vi&user=lQvIbV8AAAAJ",
+      "https://www.youtube.com/channel/UCA9Klq9AfZ10C6mbZ9AMLww",
+      "https://disqus.com/by/hcgiaotiptinganh/",
+      "https://www.behance.net/hocgiaotieptienganh"
+    ]
+    }
+],
+"alumniOf": [
+  {
+   "@type": "CollegeOrUniversity",
+   "name": "Trường Đại học Ngoại ngữ, Đại học Quốc gia Hà Nội"
+  }
+],
+"gender": "Male",
+"Description": "Tôi là Nguyễn Hoàng Long - Founder/CEO của Trung tâm Ngoại Ngữ Hà Nội - một trong những đơn vị hàng đầu cung cấp các khóa học tiếng Anh chất lượng.",
+"disambiguatingDescription": "e-commerce, digital marketing, and design recipe",
+"jobTitle": "CEO",
+"url": "https://giaotieptienganh.com.vn/",
+"image": "https://assets.about.me/background/users/h/o/a/hoanglong88_1623307010_372.jpg",
+"address": {
+  "@type": "PostalAddress",
+  "addressLocality": " Phạm Văn Đồng, Dịch Vọng Hậu, Cầu Giấy",
+  "addressRegion": "Hà Nội",
+  "addressCountry": "Việt Nam"
+},
+"sameAs": [
+  "https://about.me/hoanglong88/",
+  "https://www.pinterest.com/hoanglong88/",
+  "https://www.instagram.com/ceohoanglong_88/",
+  "https://www.linkedin.com/in/hoanglong88/",
+  "https://www.reddit.com/user/hoanglong-88",
+  "https://twitter.com/hoanglong885/",
+  "https://hoanglong-88.blogspot.com/,",
+  "http://qooh.me/hoanglong88",
+  "https://angel.co/u/hoanglong88",
+  "https://sumally.com/hoanglong88",
+  "https://www.goodreads.com/hoanglong88,",
+  "https://500px.com/p/hoanglong88,",
+  "https://hoanglong88.tumblr.com/,",
+  "https://www.flickr.com/people/hoanglong88/",
+  "https://www.instapaper.com/p/9126544",
+  "http://www.tagged.com/lethanhcong352",
+  "https://soundcloud.com/hoanglong88",
+  "https://vimeo.com/hoanglong88"
+  ]
+}
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="rocketlazyloadscript" async src="https://www.googletagmanager.com/gtag/js?id=G-YGCN93NWH6"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YGCN93NWH6');
+</script>
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NH5MKQW');</script>
+<!-- End Google Tag Manager -->
+<!-- Facebook Pixel Code -->
+<script type="rocketlazyloadscript">
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '424371039313916');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=424371039313916&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<meta name="facebook-domain-verification" content="voba6tuzh06wz08ko9ylql0oascedu" />
+    </head>
+<body class="home paged page-template page-template-elementor_theme page page-id-62 paged-6 page-paged-6 footer-widgets crumina-grid elementor-default elementor-kit-1929 elementor-page elementor-page-62">
+    
+    <a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+    <!-- Header -->
+
+    <header class="header navigation navigation-justified" id="site-header">
+		        <div class="container">
+
+            <div class="navigation-header">
+                <div class="navigation-logo">
+                    <div class="logo">
+						<a href="https://giaotieptienganh.com.vn" class="full-block-link" rel="home">học giao tiếp tiếng anh</a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20259%2093'%3E%3C/svg%3E" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" /></noscript>                    </div>
+                </div>
+				                <div class="navigation-button-toggler">
+                    <i class="hamburger-icon"></i>
+                </div>
+            </div>
+
+            <div class="navigation-body">
+                <div class="navigation-body-header">
+                    <div class="navigation-logo">
+                        <div class="logo">
+							<a href="https://giaotieptienganh.com.vn" class="full-block-link" rel="home">học giao tiếp tiếng anh</a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20259%2093'%3E%3C/svg%3E" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" /></noscript>                        </div>
+                    </div>
+                    <span class="navigation-body-close-button">&#10005;</span>
+                </div>
+
+                <div class="navigation-body-section navigation-additional-menu">
+	                <ul id="primary-menu" class="navigation-menu"><li id="menu-item-2508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-62 current_page_item menu-item-2508 navigation-item"><a href="https://giaotieptienganh.com.vn/" class="navigation-link">Trang Chủ</a></li>
+<li id="menu-item-2509" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2509 navigation-item"><a rel="nofollow" href="https://giaotieptienganh.com.vn/gioi-thieu/" class="navigation-link">Giới Thiệu</a></li>
+<li id="menu-item-3384" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3384 navigation-item"><a href="https://giaotieptienganh.com.vn/ngu-phap/" class="navigation-link">Ngữ Pháp</a></li>
+<li id="menu-item-3385" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3385 navigation-item"><a href="https://giaotieptienganh.com.vn/tu-vung/" class="navigation-link">Từ Vựng</a></li>
+<li id="menu-item-2658" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2658 navigation-item"><a href="https://giaotieptienganh.com.vn/tin-tuc/" class="navigation-link">Tin Tức</a></li>
+<li id="menu-item-2516" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2516 navigation-item"><a rel="nofollow" href="https://giaotieptienganh.com.vn/lien-he/" class="navigation-link">Liên Hệ</a></li>
+</ul>					            <div class="nav-add">
+                                <div class="search search_main"><div class="js-open-p-search"><i class="seoicon-loupe"></i></div></div><!-- Dropdown Search-->
+<div class="popup-search">
+	<form method="get" action="https://giaotieptienganh.com.vn/" class="search-inline">
+		<label for="search-drop-input" class="screen-reader-text">Search</label>
+		<input class="input-standard-grey" id="search-drop-input" required="required" name="s" placeholder="Type and hit Enter..." type="search" value="">
+		<button class="search-btn">
+			<i class="seoicon-loupe"></i>
+		</button>
+	</form>
+</div>
+<!-- # Dropdown Search-->
+            </div>
+
+                            </div>
+
+				            </div>
+
+        </div>
+    </header>
+	
+    <!-- ... End Header -->
+	    <div class="content-wrapper">
+
+	<!-- Stunning header -->
+<div id="stunning-header" class="stunning-header stunning-header-bg-gray stunning-header-custom">
+	    <div class="stunning-header-content">
+		<h1 class="stunning-header-title h1">Học Giao Tiếp Tiếng Anh Hiệu Quả Chất Lượng</h1>    </div>
+</div>
+<!-- End Stunning header -->
+	<div id="primary" class="page-builder-wrap">
+		<div class="row ">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<main id="main" class="site-main content-main-full" >
+
+					<div id="page-62">
+	    <div class="entry-content">
+				<div data-elementor-type="wp-page" data-elementor-id="62" class="elementor elementor-62" data-elementor-settings="[]">
+						<div class="elementor-inner">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-ab94dbc elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ab94dbc" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-bc270e6" data-id="bc270e6" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<section class="elementor-section elementor-inner-section elementor-element elementor-element-2230408 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2230408" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-b79fc52" data-id="b79fc52" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-4f1e4ed elementor-widget elementor-widget-seosight_title" data-id="4f1e4ed" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-left" >
+						<div class="title-text-wrap">
+		    	<p class="heading-title">
+					Việc <strong>học giao tiếp tiếng Anh</strong> không còn quá xa lạ với các bạn sinh viên và người đi làm hiện nay. Biết và có thể giao tiếp tiếng Anh tốt là một lợi thế, vì điều đó sẽ mang cho bạn nhiều cơ hội việc làm hơn. 				</p>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-80f388b elementor-widget elementor-widget-seosight_ul_style" data-id="80f388b" data-element_type="widget" data-widget_type="seosight_ul_style.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module list list--secondary" data-icon="seoicon-check">
+            Vậy thì, tiếng Anh giao tiếp gồm những gì? Học như thế nào để đạt hiệu quả nhanh nhất cho người đi làm? Có thể tự học ở nhà được không? Bài viết sau đây sẽ cung cấp cho bạn cái nhìn đầy đủ nhất về việc học tiếng Anh giao tiếp cho người mới bắt đầu.        </div>
+        		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-163d360" data-id="163d360" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-4daee21 elementor-widget elementor-widget-seosight_single_image" data-id="4daee21" data-element_type="widget" data-widget_type="seosight_single_image.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module single-image">
+							<img width="580" height="182" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20580%20182'%3E%3C/svg%3E" class="aligncenter" alt="học giao tiếp tiếng anh" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2.jpg 580w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2-300x94.jpg 300w" data-lazy-sizes="(max-width: 580px) 100vw, 580px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2.jpg" /><noscript><img width="580" height="182" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2.jpg" class="aligncenter" alt="học giao tiếp tiếng anh" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2.jpg 580w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/tieng-anh-2-300x94.jpg 300w" sizes="(max-width: 580px) 100vw, 580px" /></noscript>						        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-a76d24c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a76d24c" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-28b65c5" data-id="28b65c5" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-5ce58ba elementor-widget elementor-widget-seosight_title" data-id="5ce58ba" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<h2 class="heading-title">
+					Học giao tiếp tiếng Anh là gì?				</h2>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-a7f6a0d elementor-widget elementor-widget-text-editor" data-id="a7f6a0d" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p>Nói một cách đơn giản, học giao tiếp tiếng Anh là việc bạn luyện tập nói các mẫu câu từ đơn giản đến phức tạp để phục vụ cho công việc, học tập, đời sống. Các mẫu câu này được chia theo từng ngữ cảnh (tại một quán ăn, một khách sạn, &#8230;vv), hoặc theo chủ đề nói chuyện (thời tiết, ăn uống … vv).</p><p>Mỗi người có xuất phát điểm khác nhau, vậy nên lộ trình học để đạt hiệu quả cũng sẽ không theo một khuôn khổ nào. Nhưng dù có như nào, luôn nhớ kim chỉ nam để tốt tiếng Anh là kiên trì rèn luyện, học tập đều đặn, và “có công mài sắt, có ngày nên kim”.</p><p><img class="aligncenter" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20418'%3E%3C/svg%3E" alt="tiếng anh giao tiếp" width="1000" height="418" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/hgtta.jpg" /><noscript><img class="aligncenter" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/hgtta.jpg" alt="tiếng anh giao tiếp" width="1000" height="418" /></noscript></p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-afaeecb content-home elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="afaeecb" data-element_type="section">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-148c556" data-id="148c556" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-edef66a elementor-widget elementor-widget-seosight_title" data-id="edef66a" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<h2 class="heading-title">
+					Tại sao bạn nên học giao tiếp tiếng Anh cùng ứng dụng Bitu?				</h2>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-eef42e2 elementor-widget elementor-widget-text-editor" data-id="eef42e2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				Hiện nay có rất nhiều phương pháp học nói tiếng Anh như học tại trung tâm, tự học hoặc tham gia các khóa học online. Tuy nhiên, để việc học giao tiếp trở nên dễ dàng, thuận tiện và hiệu quả nhất, bạn có thể chọn tham gia học cùng ứng dụng Bitu.
+
+<img class="aligncenter size-full wp-image-3566" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20441'%3E%3C/svg%3E" alt="học giao tiếp tiếng Anh cùng ứng dụng Bitu" width="1000" height="441" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1-300x132.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1-768x339.jpg 768w" data-lazy-sizes="(max-width: 1000px) 100vw, 1000px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1.jpg" /><noscript><img class="aligncenter size-full wp-image-3566" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1.jpg" alt="học giao tiếp tiếng Anh cùng ứng dụng Bitu" width="1000" height="441" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1-300x132.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-app-1-768x339.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" /></noscript>
+<h3>1. Bitu là gì?</h3>
+Bitu là ứng dụng tạo ra cộng đồng trò chuyện bằng tiếng Anh theo nhóm với người nước ngoài theo các chủ đề đa dạng. Với sứ mệnh tạo ra một mạng xã hội kết nối những người muốn luyện nói Tiếng Anh, Bitu ngày càng cải thiện thêm nhiều tính năng hữu ích, hỗ trợ đắc lực cho người học, đồng thời bổ sung thêm nhiều chủ đề vô cùng hấp dẫn, gần gũi và thiết thực.
+<div class="bitu-download">
+<div class="left-bt"><a href="https://bitu.onelink.me/nUn7/Website" target="_blank" rel="nofollow noopener"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20250%2080'%3E%3C/svg%3E" alt="btnDownloadAndroid" width="250" height="80" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/btnDownloadAndroid.png" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/btnDownloadAndroid.png" alt="btnDownloadAndroid" width="250" height="80" /></noscript></a></div>
+<div class="right-bt"><a href="https://bitu.onelink.me/nUn7/Website" target="_blank" rel="nofollow noopener"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20250%2080'%3E%3C/svg%3E" alt="btnDownloadAndroid" width="250" height="80" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/btnDownloadIOS.png" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/btnDownloadIOS.png" alt="btnDownloadAndroid" width="250" height="80" /></noscript></a></div>
+</div>
+<h3>2. Tại sao bạn nên tham gia Bitu?</h3>
+<ul>
+ 	<li>Phát âm CHUẨN ngay từ đầu: Trong mỗi buổi luyện nói, giáo viên nước ngoài sẽ thường xuyên giúp bạn sửa phát âm và góp ý cách diễn đạt. Phát âm chuẩn chính là chìa khóa để giao tiếp tiếng Anh xịn hơn.</li>
+ 	<li>Vượt qua nỗi sợ nói tiếng Anh: Bạn sẽ được luyện nói với những người bạn cùng trình độ dưới sự hướng dẫn của giáo viên nước ngoài. Với trình độ mới bắt đầu, Bitu đã có sẵn câu hỏi và gợi ý trả lời mẫu để giúp các bạn tự tin hơn.</li>
+ 	<li>Chỉ 30 phút mỗi ngày: Chìa khóa để giao tiếp Tiếng Anh thuần thục nằm ở việc luyện tập đều đặn hàng ngày. Chỉ 30 phút mỗi ngày với các chủ đề hấp dẫn, nóng hổi, giao tiếp tiếng Anh chắc chắn sẽ không còn là cơn ác mộng của bạn nữa.</li>
+</ul>
+<h3>3. Điều gì khiến Bitu trở nên khác biệt?</h3>
+<img class="aligncenter size-full wp-image-3756" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20495'%3E%3C/svg%3E" alt="Điều gì khiến Bitu trở nên khác biệt?" width="1000" height="495" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1-300x149.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1-768x380.jpg 768w" data-lazy-sizes="(max-width: 1000px) 100vw, 1000px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1.jpg" /><noscript><img class="aligncenter size-full wp-image-3756" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1.jpg" alt="Điều gì khiến Bitu trở nên khác biệt?" width="1000" height="495" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1-300x149.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image1-768x380.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" /></noscript>
+
+So với những phương pháp học Anh văn giao tiếp khác, Bitu có sự khác biệt rõ rệt, thể hiện ở:
+<ul>
+ 	<li>Nói không với các giáo trình nhàm chán: Bitu cung cấp các chủ đề luyện nói đa dạng, từ những chủ đề thân quen trong cuộc sống, những vấn đề nóng hổi cho đến những thông tin có thể xuất hiện trong các đề thi Speaking.</li>
+ 	<li>Bitu là cộng đồng, không phải lớp học: Bitu tạo ra một cộng đồng luyện nghe nói tiếng Anh thân thiện và hiệu quả. Không những giúp bạn cải thiện rõ rệt kỹ năng giao tiếp tiếng Anh, Biu còn tạo ra cộng đồng kết nối sôi nổi giữa những học viên.</li>
+ 	<li>Không cần đặt lịch với giáo viên: Các thành viên có thể xem trước chủ đề diễn ra trong ngày để sắp xếp thời gian tham gia. Thành viên có thể luyện nói cùng Bitu ở bất cứ đâu, bất cứ khi nào chỉ với một chiếc điện thoại.</li>
+</ul>
+Chính sự khác biệt này đã giúp cho Bitu ngày càng nhận được sự ủng hộ của đông đảo học viên và giúp cho họ ngày càng tiến bộ hơn trong quá trình luyện tập giao tiếp tiếng Anh.					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-50be1e3 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="50be1e3" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-6932993" data-id="6932993" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-fe17258 elementor-widget elementor-widget-seosight_title" data-id="fe17258" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<h2 class="heading-title">
+					Cách học giao tiếp tiếng Anh hiệu quả?				</h2>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-0ade753 elementor-widget elementor-widget-text-editor" data-id="0ade753" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<h3>1. Học giao tiếp tiếng Anh online</h3><p>Học tiếng Anh online là lựa chọn của nhiều người hiện nay, đặc biệt là người đi làm hoặc những ai có thời gian biểu hạn hẹp.</p><p>Có nhiều khóa học tiếng Anh giao tiếp online không tốn phí (FREE) nhưng để hiệu quả, bạn nên tham gia các lớp có phí. Nhiều người đồng ý rằng, họ quyết tâm nhiều hơn khi bỏ ra một số tiền cho một khóa học. Các khóa học FREE chỉ nên như bổ sung nếu bạn có dư thời gian để ôn tập thôi.</p><h3>2. Học giao tiếp tiếng Anh cho người đi làm</h3><p>Khó khăn lớn nhất của người đi làm khi học tiếng Anh đó là thời gian. Nếu bạn đang làm việc theo giờ hành chính, hầu như bạn chỉ có thể tham gia các khóa học Anh văn vào các buổi tối hoặc cuối tuần.</p><p>Đối với nhiều người, việc duy trì đều đặn các lớp học sau giờ làm việc như vậy cũng không hẳn là điều dễ dàng, vì họ còn dành thời gian cho các mối quan hệ xã hội khác. Đặc biệt, với người có gia đình, điều này lại càng khó hơn.</p><p>Vì vậy, nên học tiếng Anh càng sớm càng tốt, học khi còn độc thân sẽ dễ chịu hơn khi có gia đình. Học các khóa tiếng Anh online được xem là lựa chọn tốt nhất cho người đi làm, vì vừa đỡ thời gian di chuyển lại vừa có thể chọn giờ học linh hoạt theo quỹ thời gian ít ỏi của mình.</p><h3>3. Học giao tiếp tiếng Anh cấp tốc</h3><p>Người ta thường nói “<strong>Dục tốc bất đạt</strong>”, nhưng nếu tập trung, chăm chỉ kết hợp với chiến lược cụ thể thì bạn hoàn toàn có thể đẩy nhanh tốc độ <strong>giao tiếp tiếng Anh</strong> của bản thân lên rất nhiều.</p><p>Các trung tâm tiếng Anh thường có các lớp học có sự tham gia của giáo viên bản ngữ để đẩy nhanh tốc độ học giao tiếp của học viên lên. Nếu bạn có thể tự chuẩn bị trước ở nhà bằng cách tự học các mẫu câu giao tiếp, bạn sẽ tiếp thu được nhanh hơn và quá trình sẽ hiệu quả hơn rất nhiều.</p><h3>4. Giao tiếp tiếng Anh cho người mới bắt đầu</h3><p>Người mới bắt đầu thường thiếu tự tin về khả năng giao tiếp tiếng Anh, sợ nói sai, sợ nói dở &#8230;vv. Cần gạt bỏ sự tự ti đó và hãy luyện tập nhiều hơn nữa theo sự hướng dẫn của giảng viên.</p><p>Đầu tiên là luyện tập giao tiếp theo cặp trên lớp với các chủ đề đơn giản. Nếu sai ở đâu thì bạn và đối tác sẽ nhận ra ngay ở đó. Dần dần, bạn sẽ khắc phục được các lỗi sai này.</p><p>Quan trọng nhất là bạn cần luyện nghe thường xuyên, hãy tranh thủ nghe mọi lúc có thể, khi nấu ăn, khi đi tắm, khi giải lao … Bằng cách này, tiếng Anh sẽ thấm vào đầu bạn một cách tự nhiên, giúp khả năng nghe tiếng Anh nhạy hơn và luyện phát âm chuẩn hơn.</p><h3>5. Học giao tiếp tiếng Anh theo chủ đề</h3><p>Tiếng Anh giao tiếp thường chia bài học theo các chủ đề đơn giản và gần gũi, ví dụ như: đi mua sắm (shopping), đi chợ (go to market), tập thể dục (do exercise), những công việc văn phòng (office jobs), ….vv.</p><p>Bạn có thể bắt đầu với chủ đề bạn yêu thích để khơi gợi nguồn cảm hứng học tập, không nhất thiết phải đi theo đúng thứ tự của cuốn giáo trình.</p><h3>6. App học giao tiếp tiếng Anh hiệu quả</h3><p>Nếu như không thể tham gia được các lớp học, bạn có thể luyện tập giao tiếp tiếng Anh qua một số ứng dụng luyện giao tiếp.</p><p>Cài đặt các ứng dụng này trên điện thoại hoặc máy tính bảng sẽ giúp bạn truy cập nhanh hơn vào bất cứ lúc nào. Một số ứng dụng nổi tiếng bạn có thể tham khảo như <strong>Bitu</strong>, Elsa English, Say It, eJOY English, American English Pronunciation, Speaking English, Accent Training, &#8230;vv.</p><p>Các ứng dụng này có phần check phát âm, phần luyện tập nói qua video và phim, phần trò chơi, cũng như nhiều bài tập nhỏ khác giúp bạn tăng khả năng giao tiếp. Đa số các app đều cho người học vài ngày học thử miễn phí, như vậy bạn có thể thoải mái chọn được ứng dụng phù hợp với mình nhất.</p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-40c938e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="40c938e" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-c782db6" data-id="c782db6" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-952da58 elementor-widget elementor-widget-seosight_title" data-id="952da58" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center small-section" >
+						<div class="title-text-wrap">
+		    	<div class="heading-title h2-home">
+					Rất Nhiều Trình Độ Để Phù Hợp Nhất Với Bạn				</div>
+						    </div>
+			<div class="heading-decoration">		    <span class="first"></span><span class="second"></span>
+			</div>		</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-28057f0 elementor-widget elementor-widget-text-editor" data-id="28057f0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+									</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-79fa300 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="79fa300" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-8ac10ce" data-id="8ac10ce" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-64d80e6 elementor-widget elementor-widget-seosight_info_box" data-id="64d80e6" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-hover">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="83" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2083%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Beginners" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/beginer.png" /><noscript><img width="83" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/beginer.png" class="attachment-full size-full" alt="Beginners" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Beginners</div>
+								                    <div class="info-box-text">Từ vựng căn bản, nói được câu ngắn và đơn giản</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-8cd358f" data-id="8cd358f" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-941dc2c elementor-widget elementor-widget-seosight_info_box" data-id="941dc2c" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-hover">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="94" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2094%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Pre-Intermediate" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Pre-Intermediate.png" /><noscript><img width="94" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Pre-Intermediate.png" class="attachment-full size-full" alt="Pre-Intermediate" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Pre-Intermediate</div>
+								                    <div class="info-box-text">Có thể nói về các chủ đề quen thuộc, xây dựng các câu đơn giản, có thể hiểu khi GV nói chậm nhưng vẫn còn mắc lỗi khi nói.</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-9fc5b93" data-id="9fc5b93" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-5508409 elementor-widget elementor-widget-seosight_info_box" data-id="5508409" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-hover">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="87" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2087%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Intermediate" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Intermediate.png" /><noscript><img width="87" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Intermediate.png" class="attachment-full size-full" alt="Intermediate" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Intermediate</div>
+								                    <div class="info-box-text">Từ vựng tốt, nói được nhiều chủ đề, nói được câu dài với nhiều cấu trúc phức tạp, có thể hiểu khi GV nói nhanh.</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-2acdd37 lever-bitu elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2acdd37" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-8c1b489" data-id="8c1b489" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-60a521f elementor-widget elementor-widget-seosight_info_box" data-id="60a521f" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-hover">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="96" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2096%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Advanced" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Advanced.png" /><noscript><img width="96" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Advanced.png" class="attachment-full size-full" alt="Advanced" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Advanced</div>
+								                    <div class="info-box-text">Từ vựng đa dạng, dùng cấu trúc câu nâng cao, có thể sử dụng thành ngữ/từ lóng, có thể hiểu khi GV nói nhanh, khả năng nói gần như người bản xứ.</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-0844b55" data-id="0844b55" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-00bff9b elementor-widget elementor-widget-seosight_info_box" data-id="00bff9b" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-centered-big">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="108" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20108%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Kids Junior" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Kids-Junior.png" /><noscript><img width="108" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Kids-Junior.png" class="attachment-full size-full" alt="Kids Junior" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Kids Junior</div>
+								                    <div class="info-box-text">Tham gia hội thoại cơ bản, nói được câu ngắn/đơn giản, sử dụng từ vựng thông dụng và cần GV nói chậm</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-dd7c3ab" data-id="dd7c3ab" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-81e7b30 elementor-widget elementor-widget-seosight_info_box" data-id="81e7b30" data-element_type="widget" data-widget_type="seosight_info_box.default">
+				<div class="elementor-widget-container">
+			        <div class="crumina-module crumina-info-box info-box--standard-centered-big">
+			<div class="info-box-image-cont">
+				<div class="info-box-image">
+					<img width="94" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2094%20120'%3E%3C/svg%3E" class="attachment-full size-full" alt="Kids Senior" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Kids-Senior.png" /><noscript><img width="94" height="120" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/Kids-Senior.png" class="attachment-full size-full" alt="Kids Senior" /></noscript>				</div>
+            </div>
+            <div class="info-box-content">
+				                    <div class="info-box-title">Kids Senior</div>
+								                    <div class="info-box-text">Trả lời câu hỏi nhanh, câu trả lời dài, nêu được quan điểm và đưa ra lý do, hiểu được ngay cả khi GV nói nhanh</div>
+								            </div>
+        </div>
+				</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-6bb0855 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6bb0855" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-84959ea" data-id="84959ea" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-de04246 elementor-widget elementor-widget-seosight_title" data-id="de04246" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<h2 class="heading-title">
+					Các lỗi học tiếng Anh giao tiếp dẫn đến không hiệu quả				</h2>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-390514c elementor-widget elementor-widget-text-editor" data-id="390514c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p>Có nhiều lỗi khác nhau dẫn đến việc học tiếng Anh giao tiếp của bạn không đạt hiệu quả như mong muốn.</p><p><img class="aligncenter" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20480'%3E%3C/svg%3E" alt="giao tiếp tiếng anh" width="1000" height="480" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/hgttta1.jpg" /><noscript><img class="aligncenter" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/hgttta1.jpg" alt="giao tiếp tiếng anh" width="1000" height="480" /></noscript></p><h3>1. Lựa chọn chủ đề học mà bản thân ít thấy hứng thú</h3><p>Đây có vẻ là nguyên nhân cơ bản nhất. Nếu bạn cảm thấy một chủ đề nào đó, ví dụ “thời trang”, khá nhàm chán, bạn sẽ thấy việc học thật ì ạch.</p><p>Ngược lại, với những bạn quan tâm đến ngành học thời trang thì lại hoàn toàn hứng thú với chủ đề này. Các bạn đó có thể trò chuyện cả ngày không biết chán với những câu giao tiếp liên quan đến chủ đề “<i>how to pick your outfits</i>” (làm thế nào để chọn trang phục?).</p><h3>2. Sợ nói sai nên không dám nói</h3><p>Nếu bạn vượt qua được nỗi sợ, bạn đã thành công một nửa.</p><p>Thật vậy, hãy bình tĩnh, hãy giao tiếp, hãy nói thật tự tin như thể bạn đang nói tiếng Việt vậy. Nói tiếng Anh không gò bó, không quá chú trọng về ngữ pháp như khi viết đâu. Thậm chí người bản xứ cũng thường mắc lỗi trong giao tiếp.</p><p>Bạn cứ nghĩ đơn giản hơn một chút, nếu như mình không thử giao tiếp thì làm sao mà mình biết được bản thân tiến bộ như nào. Hãy gỡ bỏ rào cản về tâm lý, cứ mắc hàng trăm, hàng ngàn sai lầm trong giao tiếp để từ đó bạn sẽ rút kinh nghiệm cho nhiều cuộc giao tiếp về sau.</p><h2>Cách học tiếng Anh giao tiếp tại nhà</h2><p>Khi tự học ở nhà, bạn có thể tự tưởng tượng ra các tình huống sẽ xảy ra trong công việc và chuẩn bị các câu giao tiếp đối ứng.</p><p>Ví dụ, bạn là một tiếp viên hàng không. Hãy tưởng tượng, nếu có khách nói với bạn rằng “<i>I feel very cold in here</i>”, bạn sẽ đáp lại “<i>Wait me a moment. I’ll find you a blanket</i>”. Nếu có vị khách khác cũng cần một chiếc chăn, bạn có thể chuyển đổi câu đó thành một câu khác hay hơn, ví dụ như “<i>I’ll fetch you a blanket right away</i>”.</p><p>Nếu làm được điều này, bạn sẽ có thêm rất nhiều sự chủ động trong công việc và giao tiếp.</p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-28d7e19 content-home elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="28d7e19" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4379700" data-id="4379700" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-ab72278 elementor-widget elementor-widget-seosight_title" data-id="ab72278" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<h2 class="heading-title">
+					Những câu giao tiếp tiếng Anh cơ bản				</h2>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-7845532 elementor-widget elementor-widget-text-editor" data-id="7845532" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p>Đây là một số câu <strong>giao tiếp tiếng Anh</strong> cho người mới bắt đầu. Bạn có thể lưu lại và luyện tập hàng ngày nhé.</p><p><img class="aligncenter" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20489'%3E%3C/svg%3E" alt="hoc giao tiep tieng anh" width="1000" height="489" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/tagt.jpg" /><noscript><img class="aligncenter" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/tagt.jpg" alt="hoc giao tiep tieng anh" width="1000" height="489" /></noscript></p><p><strong>Khi chào hỏi ai đó</strong></p><ul><li>How’s it going? How are you doing? : Dạo này bạn thế nào?</li><li>How’s everything? How are things? How’s life? : Mọi chuyện như thế nào rồi?</li><li>How do you do? : Rất hân hạnh được gặp bạn, cuộc sống của bạn ổn chứ?</li><li>Haven’t seen you for ages: Lâu lắm rồi không gặp bạn</li><li>Great to see you again: Rất vui khi gặp lại bạn</li></ul><p><strong>Khi tạm biệt ai đó</strong></p><ul><li>Bye/Goodbye/Bye for now: Tạm biệt/Chào tạm biệt</li><li>Be seeing you/Catch you later/See you later: Hẹn gặp lại</li><li>See you soon: Mong sớm gặp lại bạn</li><li>I’m off: Tôi đi đây</li></ul><p><strong>Khi cảm ơn ai đó</strong></p><ul><li>I really appreciate it: Tôi thật sự ghi nhận sự giúp đỡ của bạn</li><li>How thoughful: Bạn thật chu đáo</li><li>That’s so kind of you: Bạn thật tốt với tôi</li><li>I am most gratefull: Tôi thật sự biết ơn vì điều này</li><li>That’s very kind of you: Bạn thật tử tế với tôi</li></ul><p><strong>Khi đáp lại lời cảm ơn</strong></p><ul><li>You’re welcome/Not at all/No sweat/No problem: Không sao, không hề gì</li><li>Don’t worry about it: Đừng bận tâm về điều đó</li><li>Don’t mention it: Đừng nhắc đến việc đó, không phải bận tâm đâu</li><li>It’s my pleasure: Giúp đỡ bạn là niềm vinh hạnh của tôi</li><li>It’s the least I could do: Đó là điều nhỏ bé tôi có thể làm cho bạn</li></ul><p><strong>Khi xin lỗi ai đó</strong></p><ul><li>I’m sorry: Tôi thật sự xin lỗi</li><li>That’s my fault: Đó là lỗi của tôi</li><li>Please don’t be mad at me: Làm ơn đừng giận tôi nhé</li><li>I was wrong on that: Tôi đã làm không đúng</li><li>Please excuse my (ignorance): Xin hãy bỏ qua sự thiếu sót của tôi</li><li>My mistake. I had that wrong: Lỗi của tôi. Tôi đã làm không đúng.</li></ul><p><strong>Khi hỏi xin sự giúp đỡ</strong></p><ul><li>Can you give me a hand with this?: Bạn có thể giúp tôi một tay không?</li><li>Could you help me for a second?: Bạn có thể giúp tôi trong giây lát được không?</li><li>Can I ask a favour?: Tôi có thể nhờ bạn giúp không?</li><li>Could you spare a moment? : Cho tôi xin một vài phút được không?</li><li>I need some help, please: Làm ơn, tôi cần sự giúp đỡ.</li></ul><p><strong>Khi nghe điện thoại</strong></p><ul><li>I will call you later: Tôi sẽ gọi cho bạn sau</li><li>What’s your phone number?: Số điện thoại của bạn là bao nhiêu?</li><li>I’m sorry. She/He’s not here today. Can I take a message?: Tôi rất tiếc cô ấy/anh ấy không có ở đây. Tôi có thể ghi lại lời nhắn giúp bạn không?</li><li>Could I ask who’s calling, please?: Có thể cho tôi biết ai đang gọi đó không?</li><li>When is a good time to call?: Khi nào có thể gọi?</li></ul>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-4f77cd3 content-home elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="4f77cd3" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-36c9f80" data-id="36c9f80" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-f3fc211 elementor-widget elementor-widget-seosight_title" data-id="f3fc211" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-center" >
+						<div class="title-text-wrap">
+		    	<div class="heading-title h2-home">
+					FAQ				</div>
+						    </div>
+					</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-90c206a elementor-widget elementor-widget-text-editor" data-id="90c206a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+				<p><img class="aligncenter" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20523'%3E%3C/svg%3E" alt="giao tiep tieng Anh" width="1000" height="523" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/hoi-giao-tiep-tieng-anh.jpg" /><noscript><img class="aligncenter" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/hoi-giao-tiep-tieng-anh.jpg" alt="giao tiep tieng Anh" width="1000" height="523" /></noscript></p><h3>1. Học giao tiếp tiếng Anh ở đâu hiệu quả?</h3><p>Bạn có thể học giao tiếp tiếng Anh tại các trung tâm tiếng Anh uy tín. Hiện nay, các khóa <strong>giao tiếp tiếng Anh</strong> rất được các trung tâm chú trọng. Họ có nhiều hình thức như luyện trực tiếp 1-1 cùng với giáo viên bản xứ, hoặc tổ chức các buổi nói chuyện thực tế với các người bạn nước ngoài tại các địa điểm du lịch.</p><h3>2. Phần mềm học tiếng Anh giao tiếp trên máy tính nào tốt?</h3><p>Hiện nay có một số phần mềm miễn phí như: Hello English, Learn Speak English, iSpeak learn English, v.v. bạn có thể tải về dùng để luyện tập giao tiếp tiếng Anh tại nhà.</p><p>Một số phần mềm đòi hỏi phải trả phí như: FluentU, Instant Immersion, Rosetta Stone, v.v. bạn có thể tham khảo dùng thử. Nếu tài chính cho phép, hãy chọn các khóa học tốn phí để có thêm động lực cho việc học hơn.</p><h3>3. Học giao tiếp tiếng Anh mất bao lâu?</h3><p>Thời gian học để có thể giao tiếp tiếng Anh tốt sẽ không giống nhau giữa người này và người kia. Nó chịu ảnh hưởng bởi cách học của bạn, cách bạn quản lý thời gian, bạn có nhận được giúp đỡ hay phản hồi hay không.</p><p>Nhớ rằng, chăm chỉ và nỗ lực luôn là yếu tố quyết định để rút ngắn thời gian học bạn nhé.</p><h3>4. Học tiếng Anh giao tiếp như thế nào?</h3><p>Bạn sẽ thấy có rất nhiều cách để học tiếng Anh giao tiếp. Cách thứ nhất, tập nói lại theo người bản xứ, bạn hãy mở youtube lên và chọn một video của người nổi tiếng mà bạn hâm mộ, xem cách trả lời của họ như nào và tập nói theo.</p><p>Cách thứ hai, sử dụng những câu mà bạn vừa học được ngay lập tức trong các tình huống hàng ngày. Mỗi ngày dành ra ít nhất 30 phút để nghe tiếng Anh nữa nhé.</p><h3>5. Học giao tiếp tiếng Anh bắt đầu từ đâu?</h3><p>Bắt đầu việc học tiếng Anh giao tiếp bằng cách đặt câu hỏi: “<i>học để làm gì</i>”. Trả lời cho câu hỏi này là bạn đã đặt ra mục tiêu cụ thể cần đạt được. Từ đó, lộ trình học tiếng Anh sẽ bám sát vào mục tiêu hơn, và dễ thành công hơn.</p><h3>6. Khóa học tiếng Anh giao tiếp bao nhiêu tiền?</h3><p>Một buổi học thường rơi vào khoảng 100 đến 300 nghìn, mỗi khóa học tiếng Anh giao tiếp thường sẽ có độ dài dao động từ 20 đến 30 buổi. Bạn có thể liên hệ với trung tâm qua số điện thoại hoặc qua trang fanpage để biết cụ thể hơn về các chương trình giảm giá cho từng khóa học. Lưu ý rằng rủ thêm bạn bè cùng học cũng sẽ được giảm giá.</p><h3>7. Học nói tiếng Anh như thế nào?</h3><p>Để học nói tiếng Anh thật tốt, bạn cần có nền tảng vững vàng, bạn cần bắt đầu từ việc luyện tập lại các âm cơ bản, rồi từ đó nâng dần mức độ lên, luyện tập nối âm, luyện tập các âm khó, tập nói các câu dài hơn. <strong>Kiên trì sẽ thành công!</strong></p><p><img class="aligncenter size-full wp-image-3757" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20495'%3E%3C/svg%3E" alt="Làm cách nào để tham gia Bitu?" width="1000" height="495" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2-300x149.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2-768x380.jpg 768w" data-lazy-sizes="(max-width: 1000px) 100vw, 1000px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2.jpg" /><noscript><img class="aligncenter size-full wp-image-3757" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2.jpg" alt="Làm cách nào để tham gia Bitu?" width="1000" height="495" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2.jpg 1000w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2-300x149.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/bitu-image2-768x380.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" /></noscript></p><h3>8. Làm cách nào để tham gia Bitu?</h3><p>Để có thể tham gia các phòng trò chuyện của Bitu, bạn chỉ cần làm theo các bước sau:</p><ul><li>Tải ứng dụng Bitu trên App Store hoặc Ch Play và đăng ký tài khoản</li><li>Tham gia phòng test để được đánh giá chính độ chính xác nhất</li><li>Tham gia buổi học thử của Bitu để hiểu hơn về cách vận hành của app hoặc mua gói học chính thức</li><li>Chọn một chủ đề nói mà bạn yêu thích. Tất cả các chủ đề của Bitu đều sẽ được cập nhật hàng ngày</li><li>Chờ 1-2 phút để Bitu kết nối bạn với giáo viên và các thành viên khác vào phòng.</li><li>Tham gia vào phòng nói chuyện. Mỗi phòng có 2 thành viên người Việt Nam và 1 Giáo viên người nước ngoài. Mỗi chủ đề nói chỉ diễn ra 30 phút.</li></ul><h3>9. Tiếng Anh kém có thể học giao tiếp với Bitu được không?</h3><p>Nếu bạn đang lo lắng rằng trình độ nói tiếng Anh của mình chưa đủ tốt để tham gia các buổi trò chuyện của Bitu thì hãy yên tâm bạn nhé. Bitu sẽ giúp bạn đánh giá trình độ chuẩn xác và từ đó bạn có thể tham gia các phòng ở đúng trình độ của mình, với một người bạn Việt Nam cũng có chung trình độ như bạn. Với những trình độ như Beginners, Pre-Inter… Bitu luôn có sẵn phần outline gợi ý câu hỏi và cách trả lời để hỗ trợ các bạn trong quá trình luyện giao tiếp tiếng Anh với giáo viên người nước ngoài.</p><h3>10. Bitu có những trình độ nào cho người học giao tiếp tiếng Anh?</h3><p>Hiện tại, Bitu có các trình độ: Beginners, Pre-Intermediate, Intermediate, Advanced, Kids Junior và Kids Senior. Với hệ thống phân trình độ đa dạng như vậy, người tham gia sẽ được đánh giá trình độ phù hợp và có lộ trình rõ ràng hơn. Với mỗi trình độ như vậy thì chủ đề giao tiếp cũng được thiết kế phù hợp kèm theo các tài liệu hỗ trợ hiệu quả cho người học.</p><p>Ví dụ, với trình độ Beginners, các chủ đề đều khá đơn giản, thân thiện, có outline gợi ý câu hỏi và cách trả lời cùng với phần vocab bao gồm 8 từ vựng thông dụng của chủ đề và 2 cấu trúc có thể giúp bạn cấu thành câu trả lời. Hay với các trình độ Kids, chủ đề được lựa chọn phù hợp với độ tuổi của bé và giúp bé tương tác tốt với giáo viên và bạn cùng phòng. Các chủ đề đều hướng đến sự sáng tạo, khám phá, tìm tòi… giúp bé có thật nhiều hứng thú trong mỗi buổi học. Thật tuyệt vời phải không?</p><p>Với Bitu, việc học tiếng Anh giao tiếp trở nên hết sức dễ dàng, tiện lợi và hiệu quả. Chỉ cần chăm chỉ rèn luyện, luyện tập hằng ngày với Bitu, trình độ giao tiếp tiếng Anh của bạn của bạn chắc chắn sẽ được cải thiện một cách nhanh chóng. Hãy tham gia ngay bằng cách tải app Bitu tại đây nhé: <a href="https://bitu.vn/" target="_blank" rel="nofollow noopener">https://bitu.vn/</a></p><p><strong>Học giao tiếp tiếng Anh</strong> là điều cần thiết và không hề khó như ta từng nghĩ. Chỉ cần chăm chỉ rèn luyện, luyện tập hằng ngày, tin rằng ai rồi cũng sẽ nói được tiếng Anh suôn sẻ. “<i>Đường tới đầu cầu sẽ thẳng</i>”, bất cứ khó khăn nào cũng đừng bỏ cuộc bạn nhé!</p>					</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-f24fb97 content-home elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f24fb97" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-33a8c1d" data-id="33a8c1d" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-c8e7dd3 elementor-widget elementor-widget-text-editor" data-id="c8e7dd3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+								<div class="elementor-text-editor elementor-clearfix">
+									</div>
+						</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-dbcd7df elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="dbcd7df" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a4447d5" data-id="a4447d5" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-6432308 elementor-widget elementor-widget-seosight_title" data-id="6432308" data-element_type="widget" data-widget_type="seosight_title.default">
+				<div class="elementor-widget-container">
+					<header class="crumina-module crumina-heading align-left" >
+						<div class="title-text-wrap">
+		    	<div class="heading-title h2-home">
+					Bài Viết Tin Tức				</div>
+						    </div>
+			<div class="heading-decoration">		    <span class="first"></span><span class="second"></span>
+			</div>		</header>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-3b04fbf elementor-widget elementor-widget-seosight_post_slider" data-id="3b04fbf" data-element_type="widget" data-widget_type="seosight_post_slider.default">
+				<div class="elementor-widget-container">
+					<div id="post-slider-646401409f09d" class="crumina-module news-slider-module crumina-module-slider">
+				            <div class="swiper-container pagination-bottom" data-show-items="4" data-scroll-items="4" data-prev-next="1" data-loop="false">
+	                <div class="swiper-wrapper">
+						                            <div class="swiper-slide">
+								                                    <div class="crumina-case-item">
+                                        <div class="case-item__thumb mouseover lightbox shadow animation-disabled">
+                                            <a href="https://giaotieptienganh.com.vn/3-loai-cau-so-sanh-trong-tieng-anh/">
+												                                                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20202%20151'%3E%3C/svg%3E" width="202" height="151" alt="so-sanh-trong-tieng-anh" loading="lazy" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/11/so-sanh-trong-tieng-anh-202x151.jpg" ><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/11/so-sanh-trong-tieng-anh-202x151.jpg" width="202" height="151" alt="so-sanh-trong-tieng-anh" loading="lazy" ></noscript>
+                                            </a>
+                                        </div>
+                                        <a class="case-item__title" href="https://giaotieptienganh.com.vn/3-loai-cau-so-sanh-trong-tieng-anh/">3 loại câu so sánh trong tiếng Anh</a>
+										<div class="case-item__cat"><a href="https://giaotieptienganh.com.vn/ngu-phap/" rel="tag">Ngữ Pháp</a></div>                                    </div>
+								                            </div>
+						                            <div class="swiper-slide">
+								                                    <div class="crumina-case-item">
+                                        <div class="case-item__thumb mouseover lightbox shadow animation-disabled">
+                                            <a href="https://giaotieptienganh.com.vn/3-dang-cau-truc-cau-tuong-thuat-va-cach-su-dung/">
+												                                                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20202%20151'%3E%3C/svg%3E" width="202" height="151" alt="R" loading="lazy" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/10/R-202x151.png" ><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/10/R-202x151.png" width="202" height="151" alt="R" loading="lazy" ></noscript>
+                                            </a>
+                                        </div>
+                                        <a class="case-item__title" href="https://giaotieptienganh.com.vn/3-dang-cau-truc-cau-tuong-thuat-va-cach-su-dung/">3 dạng cấu trúc câu tường thuật và cách sử dụng</a>
+										<div class="case-item__cat"><a href="https://giaotieptienganh.com.vn/ngu-phap/" rel="tag">Ngữ Pháp</a></div>                                    </div>
+								                            </div>
+						                            <div class="swiper-slide">
+								                                    <div class="crumina-case-item">
+                                        <div class="case-item__thumb mouseover lightbox shadow animation-disabled">
+                                            <a href="https://giaotieptienganh.com.vn/bo-ba-chia-khoa-hoc-phat-am-giao-tiep-tieng-anh/">
+												                                                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20202%20151'%3E%3C/svg%3E" width="202" height="151" alt="1" loading="lazy" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/10/1-202x151.png" ><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/10/1-202x151.png" width="202" height="151" alt="1" loading="lazy" ></noscript>
+                                            </a>
+                                        </div>
+                                        <a class="case-item__title" href="https://giaotieptienganh.com.vn/bo-ba-chia-khoa-hoc-phat-am-giao-tiep-tieng-anh/">Bộ ba &#8220;chìa khóa&#8221; học phát âm tiếng Anh &#8211; Liệu bạn đã biết?</a>
+										<div class="case-item__cat"><a href="https://giaotieptienganh.com.vn/tin-tuc/" rel="tag">Tin Tức</a></div>                                    </div>
+								                            </div>
+						                            <div class="swiper-slide">
+								                                    <div class="crumina-case-item">
+                                        <div class="case-item__thumb mouseover lightbox shadow animation-disabled">
+                                            <a href="https://giaotieptienganh.com.vn/truoc-danh-tu-la-gi/">
+												                                                <img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20202%20151'%3E%3C/svg%3E" width="202" height="151" alt="trước danh từ là gì?" loading="lazy" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/09/danh-tu-202x151.jpg" ><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/09/danh-tu-202x151.jpg" width="202" height="151" alt="trước danh từ là gì?" loading="lazy" ></noscript>
+                                            </a>
+                                        </div>
+                                        <a class="case-item__title" href="https://giaotieptienganh.com.vn/truoc-danh-tu-la-gi/">Các thành tố có thể xuất hiện trước danh từ là gì?</a>
+										<div class="case-item__cat"><a href="https://giaotieptienganh.com.vn/ngu-phap/" rel="tag">Ngữ Pháp</a></div>                                    </div>
+								                            </div>
+													                </div>
+						            </div>
+				    </div>
+	    <style type="text/css">#post-slider-646401409f09d .swiper-container-horizontal > .swiper-pagination-bullets, #post-slider-646401409f09d .swiper-pagination-custom, #post-slider-646401409f09d .swiper-pagination-fraction{left: 50%;width:auto;}#post-slider-646401409f09d .swiper-pagination-bullet{opacity:1;}</style>
+	    		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-50ccfe2 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="50ccfe2" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-d001e2b" data-id="d001e2b" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+							<div class="elementor-widget-wrap">
+						<div class="elementor-element elementor-element-31a9056 elementor-widget elementor-widget-html" data-id="31a9056" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<div>ID bài viết: <strong>389939</strong></div>		</div>
+				</div>
+						</div>
+					</div>
+		</div>
+								</div>
+					</div>
+		</section>
+						</div>
+						</div>
+					</div>
+		    </div><!-- .entry-content -->
+
+	</div><!-- #post-## -->
+
+				</main><!-- #main -->
+			</div>
+					</div><!-- #row -->
+	</div><!-- #primary -->
+	
+	<!-- Subscribe Form -->
+<section id="subscribe-section" class="subscribe-section">
+    <div class="subscribe container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-5 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+				<script type="rocketlazyloadscript">(function() {
+	window.mc4wp = window.mc4wp || {
+		listeners: [],
+		forms: {
+			on: function(evt, cb) {
+				window.mc4wp.listeners.push(
+					{
+						event   : evt,
+						callback: cb
+					}
+				);
+			}
+		}
+	}
+})();
+</script><!-- Mailchimp for WordPress v4.8.6 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-2275" method="post" data-id="2275" data-name="Demo Data Form" ><div class="mc4wp-form-fields"><div class="subscribe-form form-subscribe">
+  <input type="email" name="EMAIL" placeholder="Nhập Email của bạn..." required />
+  <button type="submit" class="subscr-btn">Đăng ký<span class="semicircle--right"></span></button>
+</div></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1684275520" /><input type="hidden" name="_mc4wp_form_id" value="2275" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /><div class="mc4wp-response"></div></form><!-- / Mailchimp for WordPress Plugin -->            </div>
+			            <div class="images-block not-animated">
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2058%2057'%3E%3C/svg%3E" width="58" height="57" alt="gear" class="gear" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-gear.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-gear.png" width="58" height="57" alt="gear" class="gear"></noscript>
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20470%20290'%3E%3C/svg%3E" width="470" height="290" alt="mail" class="mail" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr1.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr1.png" width="470" height="290" alt="mail" class="mail"></noscript>
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20138%20133'%3E%3C/svg%3E" width="138" height="133" alt="mailopen" class="mail-2" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-mailopen.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-mailopen.png" width="138" height="133" alt="mailopen" class="mail-2"></noscript>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Subscribe Form -->
+
+    </div><!-- ! .content-wrapper Close -->
+    <!-- Footer -->
+    <footer id="site-footer" class="footer ">
+        <div class="container">
+			            <div class="row info">
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+					                        <div class="crumina-heading widget-heading">
+							                                <div class="footer-title">Liên hệ</div>
+                                <div class="heading-decoration"><span class="first"></span><span class="second"></span>
+                                </div>
+								                                <div class="heading-text">
+									<p>Email: support@giaotieptienganh.com.vn</p>
+<p>Phone: 0981115411 - 0904565411</p>
+<p>Địa chỉ: Tầng 10, Tháp D, Tòa Gold Tower, số 275 Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân, Hà Nội.</p>
+                                </div>
+							                        </div>
+										                       <!--  <div class="socials">
+                            <link href=""/>
+							                        </div> -->
+					                </div>
+
+								                    <div class="col-lg-offset-1 col-md-offset-1 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+							<aside id="seosight_menus-2" class="widget w-custom-menu col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="crumina-heading widget-heading"><div class="footer-title">Thông Tin</div><div class="heading-decoration"><span class="first"></span><span class="second"></span></div></div>	<div class="menus-wrap ovh">
+		<ul id="menu-footer-menu" class="list--traingle full-width"><li><a rel="nofollow" href="https://giaotieptienganh.com.vn/gioi-thieu/"><i class="fa fa-caret-right" aria-hidden="true"></i>Giới Thiệu</a></li>
+<li><a rel="nofollow" href="https://giaotieptienganh.com.vn/dieu-khoan-dich-vu/"><i class="fa fa-caret-right" aria-hidden="true"></i>Điều Khoản Dịch Vụ</a></li>
+<li><a rel="nofollow" href="https://giaotieptienganh.com.vn/lien-he/"><i class="fa fa-caret-right" aria-hidden="true"></i>Liên Hệ</a></li>
+</ul>	</div>
+</aside>                        </div>
+                    </div>
+								            </div>
+					        </div>
+		            <div class="sub-footer medium">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span class="site-copyright-text">
+        <a target="_blank" rel="nofollow noopener" href="//www.dmca.com/Protection/Status.aspx?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" class="dmca-badge"> <img width="135" height="28" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20135%2028'%3E%3C/svg%3E" alt="DMCA.com Protection Status" data-lazy-src="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" /><noscript><img width="135" height="28" src="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" alt="DMCA.com Protection Status" /></noscript></a>   </br></br>2021 © Giaotieptienganh.com.vn                             </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		
+		            <div class="back-to-top " style="width:40px; height:40px; "  >
+				                    <svg>
+                        <use xlink:href="#to-top"></use>
+                    </svg>
+				            </div>
+		
+    </footer>
+
+    <!-- End Footer -->
+    <svg class="hide">
+        <symbol id="arrow-left" viewBox="122.9 388.2 184.3 85">
+            <path d="M124.1,431.3c0.1,2,1,3.8,2.4,5.2c0,0,0.1,0.1,0.1,0.1l34.1,34.1c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4
+              c1.6-1.6,2.4-3.7,2.4-5.9s-0.9-3.9-2.4-5.5l-19.9-19.5h11.1c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3h-17.6c-1.1,0-2.1,0.6-2.5,1.6
+              c-0.4,1-0.2,2.1,0.6,2.9l24.4,24.4c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9
+              l-34.2-34.2c0,0,0,0,0,0c-0.6-0.6-0.8-1.4-0.9-1.9c0,0,0,0,0,0c0-0.2,0-0.4,0-0.6c0.1-0.6,0.3-1.1,0.7-1.6c0-0.1,0.1-0.1,0.2-0.2
+              l34.1-34.1c0.6-0.6,1.3-0.9,2.1-0.9s1.6,0.3,2.1,0.9c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1l-24.4,24.4c-0.8,0.8-1,2-0.6,3
+              c0.4,1,1.4,1.7,2.5,1.7h125.7c1.5,0,2.7-1,2.7-2.5c0-1.5-1.2-2.5-2.7-2.5H152.6l19.9-20.1c1.6-1.6,2.4-3.8,2.4-6s-0.9-4.4-2.4-6
+              c-1.6-1.6-3.7-2.5-5.9-2.5s-4.3,0.9-5.9,2.4l-34.1,34.1c-0.2,0.2-0.3,0.3-0.5,0.5c-1.1,1.2-1.8,2.8-2,4.4
+              C124.1,430.2,124.1,430.8,124.1,431.3C124.1,431.3,124.1,431.3,124.1,431.3z"></path>
+            <path d="M283.3,427.9h14.2c1.7,0,3,1.3,3,3c0,1.7-1.4,3-3,3H175.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h122.4
+              c4.6,0,8.4-3.9,8.4-8.5c0-4.6-3.8-8.5-8.4-8.5h-14.2c-1.5,0-2.7,1-2.7,2.5C280.7,426.9,281.8,427.9,283.3,427.9z"></path>
+        </symbol>
+        <symbol id="arrow-right" viewBox="122.9 388.2 184.3 85">
+            <path d="M305.9,430.2c-0.1-2-1-3.8-2.4-5.2c0,0-0.1-0.1-0.1-0.1l-34.1-34.1c-1.6-1.6-3.7-2.5-5.9-2.5c-2.2,0-4.3,0.9-5.9,2.4
+              c-1.6,1.6-2.4,3.7-2.4,5.9s0.9,4.1,2.4,5.7l19.9,19.6h-11.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h17.6c1.1,0,2.1-0.7,2.5-1.7
+              c0.4-1,0.2-2.2-0.6-2.9l-24.4-24.5c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1c0.6-0.6,1.3-0.9,2.1-0.9c0.8,0,1.6,0.3,2.1,0.9
+              l34.2,34.2c0,0,0,0,0,0c0.6,0.6,0.8,1.4,0.9,1.9c0,0,0,0,0,0c0,0.2,0,0.4,0,0.6c-0.1,0.6-0.3,1.1-0.7,1.6c0,0.1-0.1,0.1-0.2,0.2
+              l-34.1,34.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1l24.4-24.4c0.8-0.8,1-1.9,0.6-2.9
+              c-0.4-1-1.4-1.6-2.5-1.6H158.1c-1.5,0-2.7,1-2.7,2.5c0,1.5,1.2,2.5,2.7,2.5h119.3l-19.9,20c-1.6,1.6-2.4,3.7-2.4,6s0.9,4.4,2.4,5.9
+              c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4l34.1-34.1c0.2-0.2,0.3-0.3,0.5-0.5c1.1-1.2,1.8-2.8,2-4.4
+              C305.9,431.3,305.9,430.8,305.9,430.2C305.9,430.2,305.9,430.2,305.9,430.2z"></path>
+            <path d="M146.7,433.9h-14.2c-1.7,0-3-1.3-3-3c0-1.7,1.4-3,3-3h122.4c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3H132.4
+              c-4.6,0-8.4,3.9-8.4,8.5c0,4.6,3.8,8.5,8.4,8.5h14.2c1.5,0,2.7-1,2.7-2.5C149.3,434.9,148.1,433.9,146.7,433.9z"></path>
+        </symbol>
+            <symbol id="to-top" viewBox="0 0 32 32">
+                <path d="M17,22 L25.0005601,22 C27.7616745,22 30,19.7558048 30,17 C30,14.9035809 28.7132907,13.1085075 26.8828633,12.3655101
+                  L26.8828633,12.3655101 C26.3600217,9.87224935 24.1486546,8 21.5,8 C20.6371017,8 19.8206159,8.19871575 19.0938083,8.55288165
+                  C17.8911816,6.43144875 15.6127573,5 13,5 C9.13400656,5 6,8.13400656 6,12 C6,12.1381509 6.00400207,12.275367 6.01189661,12.4115388
+                  L6.01189661,12.4115388 C4.23965876,13.1816085 3,14.9491311 3,17 C3,19.7614237 5.23249418,22 7.99943992,22 L16,22 L16,16 L12.75,19.25
+                  L12,18.5 L16.5,14 L21,18.5 L20.25,19.25 L17,16 L17,22 L17,22 Z M16,22 L16,27 L17,27 L17,22 L16,22 L16,22 Z"
+                      id="cloud-upload"></path>
+            </symbol>
+
+    </svg>
+	<!-- <script type="rocketlazyloadscript" src="https://belife.vn/Areas/Preview/Scripts/AckGen/addon-ofs.js"></script> -->
+<script type="rocketlazyloadscript">(function() {function maybePrefixUrlField() {
+	if (this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+		this.value = "http://" + this.value;
+	}
+}
+
+var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+if (urlFields) {
+	for (var j=0; j < urlFields.length; j++) {
+		urlFields[j].addEventListener('blur', maybePrefixUrlField);
+	}
+}
+})();</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/giaotieptienganh.com.vn","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type='text/javascript' id='fw-form-helpers-js-extra'>
+/* <![CDATA[ */
+var fwAjaxUrl = ["\/wp-admin\/admin-ajax.php"];
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/fw-form-helpers.js?ver=1655952168' id='fw-form-helpers-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/plugins/elementor-seosight/assets/js/jquery.matchHeight.js?ver=1655952168' id='elementor-seosight-matchheight-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/plugins/elementor-seosight/assets/js/main.js?ver=1655952168' id='elementor-seosight-js-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6' id='swiper-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/theme-plugins.js?ver=1655952168' id='seosight-plugins-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/main.js?ver=1655952168' id='seosight-main-script-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/velocity.min.js?ver=1.2.3' id='velocity-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/ScrollMagic.min.js?ver=2.0.5' id='scrollmagic-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/animation.velocity.min.js?ver=2.0.5' id='scrollmagic-velocity-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' defer src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/plugins/mailchimp-for-wp/assets/js/forms.js?ver=1655952168' id='mc4wp-forms-api-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.4.4' id='elementor-webpack-runtime-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.4.4' id='elementor-frontend-modules-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2' id='elementor-waypoints-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js?ver=3.4.4' id='share-link-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.8.1' id='elementor-dialog-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='elementor-frontend-js-before'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Chia s\u1ebb tr\u00ean Facebook","shareOnTwitter":"Chia s\u1ebb tr\u00ean Twitter","pinIt":"Ghim n\u00f3","download":"T\u1ea3i xu\u1ed1ng","downloadImage":"T\u1ea3i h\u00ecnh \u1ea3nh","fullscreen":"To\u00e0n m\u00e0n h\u00ecnh","zoom":"Thu ph\u00f3ng","share":"Chia s\u1ebb","playVideo":"Ch\u01a1i Video","previous":"Previous","next":"Next","close":"\u0110\u00f3ng"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Thi\u1ebft b\u1ecb di \u0111\u1ed9ng","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"M\u00e1y t\u00ednh b\u1ea3ng","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.4.4","is_static":false,"experimentalFeatures":{"e_import_export":true,"landing-pages":true,"elements-color-picker":true,"admin-top-bar":true},"urls":{"assets":"https:\/\/giaotieptienganh.com.vn\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"global_image_lightbox":"yes","active_breakpoints":["viewport_mobile","viewport_tablet"],"lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":62,"title":"H%E1%BB%8Dc%20Giao%20Ti%E1%BA%BFp%20Ti%E1%BA%BFng%20Anh%20%E2%80%93%20Trang%206","excerpt":"","featuredImage":"https:\/\/giaotieptienganh.com.vn\/wp-content\/uploads\/2021\/07\/tieng-anh.jpg"}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.4.4' id='elementor-frontend-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/js/preloaded-modules.min.js?ver=3.4.4' id='preloaded-modules-js' defer></script>
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://giaotieptienganh.com.vn/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH5MKQW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script type="rocketlazyloadscript">"use strict";var wprRemoveCPCSS=function wprRemoveCPCSS(){var elem;document.querySelector('link[data-rocket-async="style"][rel="preload"]')?setTimeout(wprRemoveCPCSS,200):(elem=document.getElementById("rocket-critical-css"))&&"remove"in elem&&elem.remove()};window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400%7CRoboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto%20Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;subset=vietnamese&#038;display=swap" /><link rel="stylesheet" href="https://giaotieptienganh.com.vn/wp-content/cache/min/1/577b72777ca67cfd1e6597b2614cd8f4.css" media="all" data-minify="1" /></noscript></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1684275522 -->

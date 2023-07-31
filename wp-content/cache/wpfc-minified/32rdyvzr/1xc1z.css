@@ -1,0 +1,137 @@
+.navigation-logo img{width:190px;}
+.logo img{margin-top:9px;}
+.elementor-1888 .elementor-element.elementor-element-91207ef{box-shadow:none!important;}
+.h2-home{font-size:30px;}
+.title-homepage{font-size:35px;}
+.footer-title{font-size:30px;}
+.heading-title-ft{font-size:30px;}
+.h5-title{font-size:24px;color:#000;}
+.section-padding{padding-top:25px;}
+.elementor-section:not(.elementor-inner-section), .kc_row:not(.kc_row_inner), .medium-padding120{padding:20px 0 20px!important;}
+.breadcrumbs-item.active .breadcrumb-item-name{text-decoration:none;}
+h2{font-size:25px;font-weight:600;}
+h3{font-size:23px;font-weight:600;}
+h4{font-size:22px;font-weight:600;}
+.latest-news-item .post__title{font-size:17px;font-weight:600;}
+.e-content.entry-content{line-height:33px;}
+.post .post__content ul:not(.blocks-gallery-grid) li{margin-top:0;margin-bottom:5px;}
+.content-home ul li{list-style:none;}
+.content-home ul li::before{content:"\e908";font-family:'seosight' !important;color:#df0024;font-size:13px;margin-right:10px;}
+.content-home ul li{list-style:none;margin-bottom:16px;}
+.content-home ul{padding-left:20px;}
+.post__content{width:100%;}
+.crumina-case-item .case-item__title, .post-standard .post__content .post__title{text-transform:none;}
+.w-custom-menu ul, .footer .sub-footer span{font-size:16px;}
+.home .elementor-section-wrap ul{margin-top:20px;}
+.crumina-info-box.info-box--standard-centered-big .info-box-title{text-transform:none;}
+.crumina-info-box.info-box--standard-centered-big:hover .info-box-image{box-shadow:none;}
+.crumina-info-box.info-box--standard-centered-big:hover .info-box-title{color:#f53e06;}
+body .elementor-section.lever-bitu{padding-bottom:40px !important;}
+.crumina-info-box.info-box--standard-centered-big .info-box-image{background-color:transparent;}
+.bitu-download{width:100%;float:left;padding:50px 0;}
+.bitu-download div{width:50%;float:left;}
+.left-bt{text-align:right;padding-right:50px;}
+.right-bt{text-align:left;padding-left:50px;}
+.bitu-download div img{width:250px;}
+.form-subscribe button{font-weight:600;}
+.info-box-title{font-size:23px;font-family:nunito;font-weight:600;margin-bottom:15px !important;}
+.pagination-arrow{margin-top:0;}
+.post-standard-details{margin-bottom:0;}
+.ratels{font-size:22px;font-family:nunito;font-weight:600;}
+#related_posts{width:100%;float:left;}
+#related_posts ul li:last-child{margin-right:0;}
+#related_posts ul li{width:30%;float:left;list-style:none;margin-right:5%;}
+.relatedthumb img{border-radius:10px;margin-bottom:20px;}
+input, textarea{border-radius:10px;padding:19px 10px;}
+body .full-block-link{text-indent:-9999px;}
+.form-subscribe button{background-color:#bb3902;}
+@media only screen and (min-width: 800px){
+.col-lg-8{width:70%;padding:0;}
+.col-lg-offset-1{margin-left:5%;}
+.col-lg-3{width:25%;padding:0;}
+}
+@media only screen and (max-width: 800px){
+.post-standard-details .post__content .post-additional-info{margin-bottom:0;}
+p, ol li, ul li, span, .list li, body, .h5{font-size:18px;}
+.title-homepage{font-size:25px;}
+h5{font-size:20px;}
+.h2-home{font-size:23px;}
+.footer-title{font-size:25px;}
+.leave-reply .submit-block .submit-block-text, .submit-block-text span, .checkbox label{font-size:15px;}
+.checkbox{margin-bottom:20px;}
+}
+@media only screen and (max-width: 767px){
+.breadcrumbs {
+display: none;
+}
+.content-home ul {
+padding-left: 0px;
+}
+.navigation-logo img {
+width: 150px;
+margin-top: 15px;
+margin-bottom: 10px;
+}
+#site-header {
+border-top: 6px solid #f52806e3;
+}
+.home .elementor-section.elementor-top-section.elementor-element.elementor-element-ab94dbc.elementor-section-boxed.elementor-section-height-default {
+padding-top: 0 !important;
+margin-top: -10px;
+}
+.heading-decoration {
+margin-top: 0;
+}
+.home .elementor-element.elementor-element-7689cb2.elementor-widget.elementor-widget-seosight_title {
+margin-bottom: 20px;
+}
+.crumina-info-box .info-box-text {
+font-size: 18px!important;
+}
+.home h2.heading-title {
+font-size: 23px !important;
+text-align: left;
+float: left;
+}
+.left-bt {
+padding-right: 10px;
+}
+.right-bt {
+padding-left: 10px;
+}
+#related_posts ul li {
+width: 100%;
+margin-right: 0;
+margin-bottom: 30px;
+text-align: center;
+}
+body .stunning-header-title {
+font-size: 25px;
+line-height: 32px;
+}
+body h2 {
+font-size: 23px;
+line-height: 32px;
+}
+body .elementor-widget:not(:last-child) {
+margin-bottom: 20px;
+}
+body h3 {
+font-size: 21px;
+}
+.home #primary {
+padding-top: 10px;
+}
+.form-subscribe input, .form-subscribe button {
+border-radius: 10px;
+}
+body .footer {
+text-align: left;
+}
+body .footer .row.info {
+padding-top: 25px;
+}
+#site-footer ul li i {
+display: none;
+}
+}

@@ -1,0 +1,670 @@
+    <!DOCTYPE html>
+<html lang="vi">
+    <head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let r;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",r=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(r){e["rocket"+t]=n=r}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,r=document.createRange(),i=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),i.insertBefore(a,o)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="http://gmpg.org/xfn/11">
+        <link rel="pingback" href="https://giaotieptienganh.com.vn/xmlrpc.php">
+        <link rel="alternate" href="https://giaotieptienganh.com.vn/gioi-tu-in-on-at/" hreflang="vi-vn" />
+		<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.2 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh</title><style id="rocket-critical-css">.aligncenter{clear:both}.screen-reader-text{border:0;clip:rect(1px,1px,1px,1px);-webkit-clip-path:inset(50%);clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}*{-webkit-box-sizing:border-box;box-sizing:border-box}.container:before,.container:after,.row:before,.row:after{display:table;content:" ";width:100%}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:710px}}@media (min-width:992px){.container{width:965px}}@media (min-width:1200px){.container{width:1200px}}.row{margin-right:-15px;margin-left:-15px}.col-lg-3,.col-md-4,.col-md-8,.col-lg-8,.col-sm-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px}@media (min-width:1200px){.col-lg-3,.col-lg-8{float:left}.col-lg-8{width:66.66666667%}.col-lg-3{width:25%}.col-lg-offset-1{margin-left:8.33333333%}}@media (min-width:800px) and (max-width:1199px){.col-md-4,.col-md-8{float:left}.col-md-8{width:66.66666667%}.col-md-4{width:33.33333333%}}:focus{outline:0}:root{--swiper-theme-color:#007aff}:root{--swiper-navigation-size:44px}button::-moz-focus-inner{padding:0;border:0}:root{--primary-accent-color:#4cc2c0;--secondary-accent-color:#f15b26;--header-font-color:#595959;--ss-headings-color:#2f2c2c;--ss-body-font-color:#595959;--ss-borders-color:#edf2f7;--global-link-color:#2f2c2c;--ss-light-gray-color:#edf2f7;--white-color:#fff;--ss-body-font-family:"Nunito", Arial, "Helvetica Neue", Helvetica, serif;--ss-headings-font:"Nunito", Arial, "Helvetica Neue", Helvetica, serif}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}a{background-color:transparent}strong{font-weight:bolder}img{border-style:none}button,input{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button{text-transform:none}[type=submit],button{-webkit-appearance:button}[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}[type=checkbox]{box-sizing:border-box;padding:0}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{scroll-behavior:smooth}@media screen and (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}body{color:var(--ss-body-font-color);font-family:var(--ss-body-font-family);font-size:18px;font-weight:400;line-height:1.5}@media (max-width:800px){body{font-size:14px}}img{max-width:100%;height:auto;display:inline-block;vertical-align:middle}a{text-decoration:none;color:var(--global-link-color)}p{margin:0 0 .75em;font-size:18px}@media (max-width:800px){p{font-size:14px}}figure{margin:0;max-width:100%}input::-webkit-input-placeholder{color:#595959}input:-moz-placeholder{color:#595959}input:-ms-input-placeholder{color:#595959}input{box-shadow:none}input:invalid{box-shadow:none}input:-moz-submit-invalid{box-shadow:none}input:-moz-ui-invalid{box-shadow:none}.screen-reader-text{clip:rect(1px,1px,1px,1px);position:absolute!important;height:1px;width:1px;overflow:hidden}h1,.h1{font-size:48px;font-weight:400;color:var(--ss-headings-color);font-family:var(--ss-headings-font);margin:.5em 0;line-height:1.1em}@media (max-width:800px){h1,.h1{font-size:40px}}@media (max-width:640px){h1,.h1{font-size:36px}}@media (max-width:480px){h1,.h1{font-size:30px}}@media (max-width:360px){h1,.h1{font-size:24px}}h2{margin:.5em 0;font-size:42px;line-height:1.15em;font-weight:400;color:var(--ss-headings-color);font-family:var(--ss-headings-font)}@media (max-width:800px){h2{font-size:36px}}@media (max-width:570px){h2{font-size:32px}}@media (max-width:480px){h2{font-size:26px}}h5{margin:.5em 0;font-size:24px;line-height:1.5em;font-weight:400;color:var(--ss-headings-color);font-family:var(--ss-headings-font)}h5 a{color:inherit}@media (max-width:980px){h5{font-size:18px}}@media (max-width:480px){h5{font-size:16px}}ul{padding:0;margin:0}p{margin:0 0 1em 0}.entry-content:after,.entry-content:before,.widget:after,.widget:before{content:"";display:table;table-layout:fixed}.entry-content:after,.widget:after{clear:both}.hide{clip:rect(1px,1px,1px,1px);position:absolute!important;height:1px;width:1px;overflow:hidden}.hide{max-height:0}.full-block-link{position:absolute;left:0;right:0;top:0;bottom:0}.section-padding{padding:80px 0}@media (max-width:800px){.section-padding{padding:35px 0!important}}.header{position:relative;padding:0;background:#fff;width:100%;z-index:20;left:0;color:#2f2c2c;min-height:60px}@media (max-width:1200px){.header>.container{width:100%}}.header .logo{margin-bottom:0;margin-right:10px}@media (max-width:992px){.header .logo{order:1}}.nav-add{padding:0;margin:0;line-height:1;display:flex;align-items:center;margin-left:40px}@media (max-width:992px){.nav-add{margin-left:auto;padding:13px 16px}}.logo{position:relative;margin-bottom:20px;overflow:hidden;max-height:unset;display:flex;align-items:center}.logo img{margin-right:15px}.stunning-header{padding:60px 0;position:relative;background-position:center center;color:#fff}@media (max-width:768px){.stunning-header{padding:40px 0}}.stunning-header-content{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:15;padding:0 15px}.breadcrumbs{margin-top:20px;padding:0;font-size:16px}@media (max-width:570px){.breadcrumbs{font-size:14px}}.breadcrumbs-item{display:inline-block}.breadcrumbs-item a{color:inherit;margin-right:20px}.breadcrumbs-item.active .breadcrumb-item-name{opacity:1;text-decoration:underline;color:var(--primary-accent-color)}.breadcrumbs-item i{margin-right:20px;color:inherit;font-size:14px}.breadcrumbs-item:last-child a{display:none}.stunning-header-title{color:inherit;margin:0;word-wrap:break-word}@media (max-width:800px){.stunning-header-title{font-size:40px}}@media (max-width:640px){.stunning-header-title{font-size:36px}}@media (max-width:480px){.stunning-header-title{font-size:30px}}@media (max-width:360px){.stunning-header-title{font-size:24px}}.stunning-header-custom .stunning-header-title,.stunning-header-custom span,.stunning-header-custom i,.stunning-header-custom a{color:inherit!important}.content-wrapper{position:relative;overflow:hidden;z-index:2}.leave-reply input{background-color:#fff}.leave-reply .form-submit{display:none}.remember-wrap .checkbox input[type=checkbox]{display:none}button{background-color:var(--primary-accent-color);color:inherit}input{padding:19px 40px;border-color:transparent;font-size:16px;color:#595959;margin-bottom:30px;border-radius:50px;background-color:var(--ss-light-gray-color);width:100%}[type="checkbox"]{display:block;width:auto;clear:both;margin:4px 0 10px 20px;float:left}body:before{content:'';display:block;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(47,44,44,0.85);opacity:0;z-index:-999}.popup-search{width:auto;padding:40px 30px 10px 30px;border-radius:5px;position:absolute;top:38px;right:0;left:auto;background-color:#fff;z-index:111;box-shadow:15px 15px 30px rgba(0,0,0,0.16);visibility:hidden;opacity:0;max-height:0}@media (max-width:460px){.popup-search{padding:20px}}.popup-search .search-btn{display:inline-block;background-color:#2f2c2c;padding:20px 5px;border-radius:0 50px 50px 0;font-size:15px;text-transform:uppercase;position:relative;color:#fff;width:60px;height:64px}.popup-search .search-inline{position:relative;margin-bottom:30px}.popup-search .search-inline input{width:100%;margin-bottom:0}@media (max-width:460px){.popup-search .search-inline input{margin-bottom:0}}.popup-search .search-inline .search-btn{position:absolute;right:0;top:0;text-align:center;height:100%}.popup-search .search-inline .search-btn i{margin-left:0}@media (max-width:360px){.post{margin-bottom:30px}}.post .post__content{padding-bottom:30px;border-bottom:1px solid var(--ss-light-gray-color);clear:both;margin-bottom:30px}.post-additional-info{margin-bottom:25px}@media (max-width:480px){.post-additional-info{margin-bottom:15px}}.post-additional-info i{font-size:20px;margin-right:10px;color:#595959}.post-additional-info .post__date{padding:0;margin-right:30px;margin-bottom:0;background-color:transparent;vertical-align:bottom}@media (max-width:980px){.post-additional-info .post__date{display:block;margin-bottom:10px}}.post__content{word-break:break-word}.post-standard-details{margin-bottom:60px;display:flex;flex-direction:column;align-items:center}@media (max-width:640px){.post-standard-details{margin-bottom:30px}}.post-standard-details .post__content{margin-bottom:30px}.post-standard-details .post__content .post-additional-info{margin-bottom:30px}.aligncenter{text-align:center;margin:0 auto 20px}.wp-caption{border:2px solid var(--ss-light-gray-color);border-radius:10px;padding:15px;margin-bottom:20px;background:#fff;text-align:center}.wp-caption img{margin-bottom:15px}.widget{margin-bottom:20px}@media (max-width:768px){.widget{margin-bottom:30px}}.widget .crumina-heading{margin-bottom:20px}.widget .heading-decoration{margin:0}@media (max-width:768px){.sidebar .widget:first-child{margin-top:40px}}.w-latest-news .latest-news-wrap{margin-bottom:20px}.w-latest-news .post-additional-info{margin-bottom:0}.w-latest-news .post__date time{font-size:14px}.w-latest-news .post__date>*{display:inline-block;vertical-align:middle}.w-latest-news .post__date i{font-size:20px;margin-right:10px}.latest-news-item{padding:10px 0;border-bottom:1px solid var(--ss-light-gray-color)}.latest-news-item:last-child{border-bottom:none}.latest-news-item .post__title{font-size:20px;margin-bottom:0}.remember-wrap .checkbox input[type=checkbox]{display:none}.remember-wrap .checkbox input{margin-bottom:25px}.sidebar .widget{margin-bottom:40px}.navigation{display:flex;align-items:initial;width:100%;line-height:initial;box-sizing:border-box}@media (min-width:992px){.navigation{height:auto}}.navigation *,.navigation *:before,.navigation *:after{box-sizing:border-box;text-decoration:none}.navigation-header{min-width:100%;display:flex;align-items:center;justify-content:space-between}@media (min-width:992px){.navigation-header{display:none}}.navigation-body{width:100%;height:100%;position:fixed;top:0;left:-100%;overflow-x:hidden;overflow-y:auto;background-color:#fff;z-index:20000}@media (min-width:500px){.navigation-body{width:320px}}@media (min-width:992px){.navigation-body{display:flex;align-items:center;width:100%;position:relative;left:auto;overflow:visible;z-index:auto;background-color:transparent;flex-wrap:wrap}}@media (min-width:992px){.navigation-justified .navigation-body{justify-content:space-between}}.navigation-body-header{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:solid 1px #f0f0f0}@media (min-width:992px){.navigation-body-header{border:none;padding:5px 0}}.navigation-body-close-button{display:flex;justify-content:center;align-items:center;width:30px;height:30px;margin-left:auto;padding-bottom:2px;line-height:initial;text-align:center;font-size:25px;color:var(--header-font-color)}@media (min-width:992px){.navigation-body-close-button{display:none}}.navigation-body-section{width:auto;padding:0;flex-direction:column}@media (min-width:992px){.navigation-body-section{display:inline-flex;flex-direction:row;align-items:center}}.navigation-button-toggler{display:flex;align-items:center;justify-content:center;width:60px;height:60px}.navigation-button-toggler .hamburger-icon{width:20px;height:2px;display:inline-block;font-style:normal;color:var(--header-font-color);box-shadow:inset 0 0 0 32px,0 -6px,0 6px}.navigation-menu{width:100%;margin:0;padding:0;list-style:none;font-size:0rem;display:inline-block}@media (min-width:992px){.navigation-menu{width:auto;display:flex}.navigation .navigation-menu{-ms-grid-row-align:stretch;align-self:stretch}}.navigation-item{width:100%;margin:0;display:inline-flex;flex-direction:column;justify-content:center}@media (min-width:992px){.navigation-item{width:auto}}.navigation-link{width:100%;padding:13px 16px;display:flex;align-items:center;position:relative;font-size:18px;color:var(--header-font-color);text-decoration:none!important;border-bottom:solid 1px #f0f0f0;font-weight:400}.navigation-link:visited{color:var(--header-font-color)}@media (min-width:992px){.navigation-item:last-child .navigation-link{border-top:none;border-bottom:none}}@media (min-width:992px){.navigation-link{padding:0;line-height:1;border:none}}.navigation-item{margin:0 15px;position:relative}.navigation-menu>.navigation-item{padding:35px 0}.navigation-menu>li>a.navigation-link:before{content:'';display:block;width:80%;height:2px;border-top:2px solid;border-top-color:var(--primary-accent-color);position:absolute;right:0;bottom:-5px;opacity:0}.navigation-menu>li>a.navigation-link:after{content:'';display:block;position:absolute;width:15%;height:2px;border-top:2px solid;border-top-color:var(--primary-accent-color);left:0;bottom:-5px;opacity:0}.navigation-menu>li>a:before,.navigation-menu>li>a:after{border-top-color:var(--primary-accent-color)}@media (max-width:992px){.navigation-menu>li>a:after,.navigation-menu>li>a:before{display:none}.navigation-menu>.navigation-item{padding:0}.navigation-item{margin:0}}.crumina-heading{position:relative}.crumina-heading>*:last-child{margin-bottom:0}.crumina-heading>*:first-child{margin-top:0}.heading-decoration{position:relative;margin-top:10px;color:var(--primary-accent-color)}.heading-decoration>span{display:inline-block;border-radius:10px;position:relative;margin-right:10px;border-top:3px solid}.heading-decoration .first{width:30px}.heading-decoration .second{width:100px}@font-face{font-family:'seosight';src:url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.ttf) format('truetype'),url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.woff) format('woff'),url(https://giaotieptienganh.com.vn/wp-content/themes/seosight/fonts/seosight.svg#seosight) format('svg');font-weight:normal;font-display:swap;font-style:normal}[class^="seoicon-"]{font-family:'seosight'!important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.seoicon-clock:before{content:"\e90b"}.seoicon-loupe:before{content:"\e920"}.seoicon-right-arrow:before{content:"\e936"}.navigation-logo img{width:190px}.logo img{margin-top:9px}.h5-title{font-size:24px;color:#000}.section-padding{padding-top:25px}.breadcrumbs-item.active .breadcrumb-item-name{text-decoration:none}h2{font-size:25px;font-weight:600}.latest-news-item .post__title{font-size:17px;font-weight:600}.e-content.entry-content{line-height:33px}.post__content{width:100%}.post-standard-details{margin-bottom:0}input{border-radius:10px;padding:19px 10px}body .full-block-link{text-indent:-9999px}@media only screen and (min-width:800px){.col-lg-8{width:70%;padding:0}.col-lg-offset-1{margin-left:5%}.col-lg-3{width:25%;padding:0}}@media only screen and (max-width:800px){.post-standard-details .post__content .post-additional-info{margin-bottom:0}p,ul li,span,body{font-size:18px}h5{font-size:20px}}@media only screen and (max-width:767px){.breadcrumbs{display:none}.navigation-logo img{width:150px;margin-top:15px;margin-bottom:10px}#site-header{border-top:6px solid #f52806e3}.heading-decoration{margin-top:0}body .stunning-header-title{font-size:25px;line-height:32px}body h2{font-size:23px;line-height:32px}}</style><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400&#038;subset=vietnamese&#038;display=swap" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400&#038;subset=vietnamese&#038;display=swap" media="print" onload="this.media='all'" /><noscript><link rel="preload" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400&#038;subset=vietnamese&#038;display=swap" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" /></noscript><link rel="preload" href="https://giaotieptienganh.com.vn/wp-content/cache/min/1/655b66c4988fc2d92a129eb26c312f34.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all" data-minify="1" />
+	<meta name="description" content="Giới từ in on at đã rất phổ biến trong tiếng anh giao tiếp. Cùng đọc bài viết dưới đây để tóm tắt lại hệ thống kiến thức và các quy tắc sử dụng giới từ." />
+	<link rel="canonical" href="https://giaotieptienganh.com.vn/gioi-tu-in-on-at/" />
+	<meta property="og:locale" content="vi_VN" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh" />
+	<meta property="og:description" content="Giới từ in on at đã rất phổ biến trong tiếng anh giao tiếp. Cùng đọc bài viết dưới đây để tóm tắt lại hệ thống kiến thức và các quy tắc sử dụng giới từ." />
+	<meta property="og:url" content="https://giaotieptienganh.com.vn/gioi-tu-in-on-at/" />
+	<meta property="og:site_name" content="Học Giao Tiếp Tiếng Anh" />
+	<meta property="article:published_time" content="2021-08-09T02:21:40+00:00" />
+	<meta property="article:modified_time" content="2021-07-21T06:55:44+00:00" />
+	<meta property="og:image" content="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on-in-at.jpg" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="533" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Được viết bởi" />
+	<meta name="twitter:data1" content="admin" />
+	<meta name="twitter:label2" content="Ước tính thời gian đọc" />
+	<meta name="twitter:data2" content="4 phút" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://giaotieptienganh.com.vn/#website","url":"https://giaotieptienganh.com.vn/","name":"H\u1ecdc Giao Ti\u1ebfp Ti\u1ebfng Anh","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://giaotieptienganh.com.vn/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"vi"},{"@type":"ImageObject","@id":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/#primaryimage","inLanguage":"vi","url":"https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on-in-at.jpg","contentUrl":"https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on-in-at.jpg","width":800,"height":533},{"@type":"WebPage","@id":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/#webpage","url":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/","name":"H\u1ecdc c\u00e1ch s\u1eed d\u1ee5ng gi\u1edbi t\u1eeb in on at trong giao ti\u1ebfp ti\u1ebfng anh","isPartOf":{"@id":"https://giaotieptienganh.com.vn/#website"},"primaryImageOfPage":{"@id":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/#primaryimage"},"datePublished":"2021-08-09T02:21:40+00:00","dateModified":"2021-07-21T06:55:44+00:00","author":{"@id":"https://giaotieptienganh.com.vn/#/schema/person/8320320476f202dcba6b2e2e3ae84ddf"},"description":"Gi\u1edbi t\u1eeb in on at \u0111\u00e3 r\u1ea5t ph\u1ed5 bi\u1ebfn trong ti\u1ebfng anh giao ti\u1ebfp. C\u00f9ng \u0111\u1ecdc b\u00e0i vi\u1ebft d\u01b0\u1edbi \u0111\u00e2y \u0111\u1ec3 t\u00f3m t\u1eaft l\u1ea1i h\u1ec7 th\u1ed1ng ki\u1ebfn th\u1ee9c v\u00e0 c\u00e1c quy t\u1eafc s\u1eed d\u1ee5ng gi\u1edbi t\u1eeb.","breadcrumb":{"@id":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/#breadcrumb"},"inLanguage":"vi","potentialAction":[{"@type":"ReadAction","target":["https://giaotieptienganh.com.vn/gioi-tu-in-on-at/"]}]},{"@type":"BreadcrumbList","@id":"https://giaotieptienganh.com.vn/gioi-tu-in-on-at/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://giaotieptienganh.com.vn/"},{"@type":"ListItem","position":2,"name":"H\u1ecdc c\u00e1ch s\u1eed d\u1ee5ng gi\u1edbi t\u1eeb in on at trong giao ti\u1ebfp ti\u1ebfng anh"}]},{"@type":"Person","@id":"https://giaotieptienganh.com.vn/#/schema/person/8320320476f202dcba6b2e2e3ae84ddf","name":"admin","image":{"@type":"ImageObject","@id":"https://giaotieptienganh.com.vn/#personlogo","inLanguage":"vi","url":"https://secure.gravatar.com/avatar/c8f2f018b51f0701bddd6b79886acde5?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/c8f2f018b51f0701bddd6b79886acde5?s=96&d=mm&r=g","caption":"admin"},"sameAs":["https://giaotieptienganh.com.vn"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Dòng thông tin Học Giao Tiếp Tiếng Anh &raquo;" href="https://giaotieptienganh.com.vn/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Dòng phản hồi Học Giao Tiếp Tiếng Anh &raquo;" href="https://giaotieptienganh.com.vn/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Học Giao Tiếp Tiếng Anh &raquo; Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh Dòng phản hồi" href="https://giaotieptienganh.com.vn/gioi-tu-in-on-at/feed/" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+
+
+<style id='seosight-theme-style-inline-css' type='text/css'>
+header .navigation-menu li a{font-weight:400;font-style:normal;} logo, .logo{font-weight:400;font-style:normal;} body, .body{font-family:"Varela Round", sans-serif;color:#4e4e4e;font-weight:normal;} h1, .h1{font-weight:400;font-style:normal;} h2, .h2{font-weight:400;font-style:normal;} h3, .h3{font-weight:400;font-style:normal;} h4, .h4{font-weight:400;font-style:normal;} h5, .h5{font-weight:400;font-style:normal;} h6, .h6{font-weight:400;font-style:normal;} 
+</style>
+
+
+<style id='seosight-theme-blocks-inline-css' type='text/css'>
+.elementor-section:not(.elementor-inner-section) , .kc_row:not(.kc_row_inner) , .medium-padding120 {padding: 80px 0 80px;}#subscribe-section{background-image: url("https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/bg-21.png");;} #stunning-header{background-image: url("https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/bggray.jpg");}:root{--primary-accent-color: #f54d06;--secondary-accent-color: #f54d06;--global-link-color: #014b92;}
+</style>
+
+
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js' defer></script>
+<link rel="https://api.w.org/" href="https://giaotieptienganh.com.vn/wp-json/" /><link rel="alternate" type="application/json" href="https://giaotieptienganh.com.vn/wp-json/wp/v2/posts/3703" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://giaotieptienganh.com.vn/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://giaotieptienganh.com.vn/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.6" />
+<link rel='shortlink' href='https://giaotieptienganh.com.vn/?p=3703' />
+	<style type="text/css" id="custom-background-css">
+		body { background-color: #fff; }
+		body .content-wrapper { background-color: #fff; }
+	</style>
+	<link rel="icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" />
+<meta name="msapplication-TileImage" content="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/favi-hgtta.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script><script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "EducationalOrganization",
+"name": "Học Giao Tiếp Tiếng Anh",
+"alternateName": "hocgiaotieptienganh",
+"url": "https://giaotieptienganh.com.vn/",
+"logo": "https://giaotieptienganh.com.vn/wp-content/uploads/2021/05/logo-hgtta.png",
+"contactPoint": {
+"@type": "ContactPoint",
+"telephone": "0981115411",
+"contactType": "office",
+"areaServed": "VN",
+"availableLanguage": "Vietnamese"
+},
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Tầng 10, Tháp D, Tòa Gold Tower, số 275 Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân",
+"addressLocality": "Hà Nội",
+"postalCode": "100000",
+"addressCountry": "VN"
+  },
+"sameAs": [
+"https://giaotieptienganhcomvn.blogspot.com/",
+"https://about.me/hocgiaotieptienganh",
+"https://draft.blogger.com/profile/11655909553425309110",
+"https://www.youtube.com/channel/UCA9Klq9AfZ10C6mbZ9AMLww",
+"https://www.linkedin.com/in/hocgiaotieptienganh/",
+"https://vi.gravatar.com/hocgiaotieptienganh",
+"https://www.pinterest.com/giaotieptienganhcomvn",
+"https://www.instapaper.com/p/9086494",
+"https://hocgiaotieptienganhh.weebly.com/",
+"https://www.diigo.com/profile/giaotieptienganh",
+"https://hocgiaotieptienganh.tumblr.com/",
+"https://www.flickr.com/people/193110917@N02/",
+"https://www.google.com/maps/place/H%E1%BB%8Dc+Giao+Ti%E1%BA%BFp+Ti%E1%BA%BFng+Anh+Hi%E1%BB%87u+Qu%E1%BA%A3+Ch%E1%BA%A5t+L%C6%B0%E1%BB%A3ng/@20.995881,105.804166,13z/data=!4m5!3m4!1s0x0:0x27ca877492c2496e!8m2!3d21.024297!4d105.7893758?hl=vi"
+]
+}
+</script>
+<script type="application/ld+json">
+{
+"@context": "http://www.schema.org",
+"@type": "Person",
+"name": "Nguyễn Hoàng Long",
+"alternateName": "Nguyễn Hoàng Long",
+"nationality": "Việt Nam",
+"birthPlace" : {
+  "@type": "Place",
+    "address": {
+      "@type": "PostalAddress",
+    "addressLocality": "Số 3 Ngõ 63 Ngách 30/11/23 Đường Lê Đức Thọ, Phường Mỹ Đình 2, Quận Nam Từ Liêm",
+    "addressRegion": "Hà Nội",
+        "addressCountry": "Việt Nam"
+  }
+},
+"affiliation": [
+  {
+    "@type": "Organization",
+    "name": "Học Giao Tiếp Tiếng Anh",
+    "sameAs": [
+      "https://scholar.google.com/citations?hl=vi&user=lQvIbV8AAAAJ",
+      "https://www.youtube.com/channel/UCA9Klq9AfZ10C6mbZ9AMLww",
+      "https://disqus.com/by/hcgiaotiptinganh/",
+      "https://www.behance.net/hocgiaotieptienganh"
+    ]
+    }
+],
+"alumniOf": [
+  {
+   "@type": "CollegeOrUniversity",
+   "name": "Trường Đại học Ngoại ngữ, Đại học Quốc gia Hà Nội"
+  }
+],
+"gender": "Male",
+"Description": "Tôi là Nguyễn Hoàng Long - Founder/CEO của Trung tâm Ngoại Ngữ Hà Nội - một trong những đơn vị hàng đầu cung cấp các khóa học tiếng Anh chất lượng.",
+"disambiguatingDescription": "e-commerce, digital marketing, and design recipe",
+"jobTitle": "CEO",
+"url": "https://giaotieptienganh.com.vn/",
+"image": "https://assets.about.me/background/users/h/o/a/hoanglong88_1623307010_372.jpg",
+"address": {
+  "@type": "PostalAddress",
+  "addressLocality": " Phạm Văn Đồng, Dịch Vọng Hậu, Cầu Giấy",
+  "addressRegion": "Hà Nội",
+  "addressCountry": "Việt Nam"
+},
+"sameAs": [
+  "https://about.me/hoanglong88/",
+  "https://www.pinterest.com/hoanglong88/",
+  "https://www.instagram.com/ceohoanglong_88/",
+  "https://www.linkedin.com/in/hoanglong88/",
+  "https://www.reddit.com/user/hoanglong-88",
+  "https://twitter.com/hoanglong885/",
+  "https://hoanglong-88.blogspot.com/,",
+  "http://qooh.me/hoanglong88",
+  "https://angel.co/u/hoanglong88",
+  "https://sumally.com/hoanglong88",
+  "https://www.goodreads.com/hoanglong88,",
+  "https://500px.com/p/hoanglong88,",
+  "https://hoanglong88.tumblr.com/,",
+  "https://www.flickr.com/people/hoanglong88/",
+  "https://www.instapaper.com/p/9126544",
+  "http://www.tagged.com/lethanhcong352",
+  "https://soundcloud.com/hoanglong88",
+  "https://vimeo.com/hoanglong88"
+  ]
+}
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="rocketlazyloadscript" async src="https://www.googletagmanager.com/gtag/js?id=G-YGCN93NWH6"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YGCN93NWH6');
+</script>
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NH5MKQW');</script>
+<!-- End Google Tag Manager -->
+<!-- Facebook Pixel Code -->
+<script type="rocketlazyloadscript">
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '424371039313916');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=424371039313916&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+<meta name="facebook-domain-verification" content="voba6tuzh06wz08ko9ylql0oascedu" />
+    </head>
+<body class="post-template-default single single-post postid-3703 single-format-standard footer-widgets singular crumina-grid elementor-default elementor-kit-1929">
+    
+    <a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
+    <!-- Header -->
+
+    <header class="header navigation navigation-justified" id="site-header">
+		        <div class="container">
+
+            <div class="navigation-header">
+                <div class="navigation-logo">
+                    <div class="logo">
+						<a href="https://giaotieptienganh.com.vn" class="full-block-link" rel="home">học giao tiếp tiếng anh</a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20259%2093'%3E%3C/svg%3E" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" /></noscript>                    </div>
+                </div>
+				                <div class="navigation-button-toggler">
+                    <i class="hamburger-icon"></i>
+                </div>
+            </div>
+
+            <div class="navigation-body">
+                <div class="navigation-body-header">
+                    <div class="navigation-logo">
+                        <div class="logo">
+							<a href="https://giaotieptienganh.com.vn" class="full-block-link" rel="home">học giao tiếp tiếng anh</a><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20259%2093'%3E%3C/svg%3E" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/06/logo-new.jpg" alt="Học Giao Tiếp Tiếng Anh" width="259" height="93" style="" /></noscript>                        </div>
+                    </div>
+                    <span class="navigation-body-close-button">&#10005;</span>
+                </div>
+
+                <div class="navigation-body-section navigation-additional-menu">
+	                <ul id="primary-menu" class="navigation-menu"><li id="menu-item-2508" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-post-parent menu-item-2508 navigation-item"><a href="https://giaotieptienganh.com.vn/" class="navigation-link">Trang Chủ</a></li>
+<li id="menu-item-2509" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2509 navigation-item"><a rel="nofollow" href="https://giaotieptienganh.com.vn/gioi-thieu/" class="navigation-link">Giới Thiệu</a></li>
+<li id="menu-item-3384" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-3384 navigation-item"><a href="https://giaotieptienganh.com.vn/ngu-phap/" class="navigation-link">Ngữ Pháp</a></li>
+<li id="menu-item-3385" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3385 navigation-item"><a href="https://giaotieptienganh.com.vn/tu-vung/" class="navigation-link">Từ Vựng</a></li>
+<li id="menu-item-2658" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2658 navigation-item"><a href="https://giaotieptienganh.com.vn/tin-tuc/" class="navigation-link">Tin Tức</a></li>
+<li id="menu-item-2516" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2516 navigation-item"><a rel="nofollow" href="https://giaotieptienganh.com.vn/lien-he/" class="navigation-link">Liên Hệ</a></li>
+</ul>					            <div class="nav-add">
+                                <div class="search search_main"><div class="js-open-p-search"><i class="seoicon-loupe"></i></div></div><!-- Dropdown Search-->
+<div class="popup-search">
+	<form method="get" action="https://giaotieptienganh.com.vn/" class="search-inline">
+		<label for="search-drop-input" class="screen-reader-text">Search</label>
+		<input class="input-standard-grey" id="search-drop-input" required="required" name="s" placeholder="Type and hit Enter..." type="search" value="">
+		<button class="search-btn">
+			<i class="seoicon-loupe"></i>
+		</button>
+	</form>
+</div>
+<!-- # Dropdown Search-->
+            </div>
+
+                            </div>
+
+				            </div>
+
+        </div>
+    </header>
+	
+    <!-- ... End Header -->
+	    <div class="content-wrapper">
+
+	<!-- Stunning header -->
+<div id="stunning-header" class="stunning-header stunning-header-bg-gray stunning-header-custom">
+	    <div class="stunning-header-content">
+		<h1 class="stunning-header-title h1">Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh</h1>
+    <ul class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+					                <li class="breadcrumbs-item first-item" itemprop="itemListElement" itemscope
+                    itemtype="http://schema.org/ListItem">
+				                    <a href="https://giaotieptienganh.com.vn/" itemprop="item"><span
+                                itemprop="name">Trang chủ</span></a>
+                    <meta itemprop="position" content="0"/>
+                    </li>
+																                    <li class="breadcrumbs-item 0-item" itemprop="itemListElement"
+                        itemscope
+                        itemtype="http://schema.org/ListItem">
+		                <span class="breadcrumbs-separator"><i class="seoicon-right-arrow"></i></span>		                                            <a href="https://giaotieptienganh.com.vn/ngu-phap/" itemprop="item">
+                                <span itemprop="name">Ngữ Pháp</span></a>
+                            <meta itemprop="position" content="1"/>
+		                                    </li>
+                					                <li class="breadcrumbs-item active" itemprop="itemListElement" itemscope
+                    itemtype="http://schema.org/ListItem">
+	                <span class="breadcrumbs-separator"><i class="seoicon-right-arrow"></i></span>                    <a href="https://giaotieptienganh.com.vn/gioi-tu-in-on-at/" itemprop="item"><meta itemprop="position" content="2"/><span itemprop="name" content="Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh"></span></a>
+	                <span class="breadcrumb-item-name">Học cách sử dụng giới từ in on at trong giao tiếp tiếng anh</span>
+                </li>
+					    </ul>
+    </div>
+</div>
+<!-- End Stunning header -->
+
+	<div id="primary" class="container">
+		<div class="row section-padding">
+			<div class="col-lg-8 col-md-8 col-sm-12">
+				<main id="main" class="site-main content-main-sidebar" >
+
+					
+<article id="post-3703" class="post-standard-details post-3703 post type-post status-publish format-standard has-post-thumbnail hentry category-ngu-phap">
+        <div class="post__content">
+	            <div class="post-additional-info">
+
+            
+        </div>
+
+        <div class="post__content-info">
+            <div class="e-content entry-content">
+                <p>Giới từ là một bộ phận không thể thiếu trong tiếng anh giao tiếp. Có nhiều nhóm giới từ nhưng chúng ta thường hay gặp đó là <strong>giới từ in on at</strong>. Với mỗi loại thì chúng ta sẽ có cách dùng khác nhau trong những trường hợp khác nhau. Bài viết này sẽ hệ thống lại chi tiết các cách dùng của 3 loại giới từ này.</p>
+<h2>Giới từ là gì?</h2>
+<p>Giới từ là những từ được sử dụng để mô tả các quan hệ của những từ ở phía sau nó và một số thành phần khác trong câu. Tuy giới từ là thành phần phụ nhưng cũng là thành phần không thể thiếu trong câu. Giới từ thường đứng trước các tân ngữ, cụm danh từ,&#8230;</p>
+<figure id="attachment_3705" aria-describedby="caption-attachment-3705" style="width: 700px" class="wp-caption aligncenter"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20394'%3E%3C/svg%3E" alt="Phân loại giới từ trong tiếng anh" width="700" height="394" class="size-full wp-image-3705" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-300x169.jpg 300w" data-lazy-sizes="(max-width: 700px) 100vw, 700px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu.jpg" alt="Phân loại giới từ trong tiếng anh" width="700" height="394" class="size-full wp-image-3705" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-300x169.jpg 300w" sizes="(max-width: 700px) 100vw, 700px" /></noscript><figcaption id="caption-attachment-3705" class="wp-caption-text">Phân loại giới từ trong tiếng anh</figcaption></figure>
+<p>Trong tiếng anh giao tiếp, giới từ được phân loại thành rất nhiều nhóm nhỏ. Bài viết này chúng ta chỉ tìm hiểu về các giới từ chỉ thời gian, nơi chốn. Các giới từ thường xuất hiện trong nhóm này đó chính là <strong>giới từ: in, on, of</strong>.</p>
+<p>>>> Xem thêm: <a href="https://giaotieptienganh.com.vn/tuc-tu-la-gi/">túc từ là gì ?</a></p>
+<h2>Cách dùng</h2>
+<p>Các trường hợp sử dụng <strong>giới từ in on at</strong> thường hay bị nhầm lẫn. Tuy cùng thuộc một nhóm giới từ nhưng cách dùng của mỗi loại trong mỗi tình huống khác nhau. Hãy cùng tìm hiểu các quy tắc sử dụng trong các trường hợp cụ thể sau.</p>
+<h3>Giới từ In</h3>
+<p>“In” trong tiếng anh mang nghĩa là trong, ở trong. được sử dụng để chỉ các địa điểm chung chung, bao quát như các khu vực, tỉnh, thành phố, quốc gia,&#8230; Ví dụ: in Hanoi, in Vietnam, in Asia,&#8230;</p>
+<p>Giới từ này còn được dùng để chỉ các vị trí bên trong một không gian rộng lớn. Ví dụ: in the hospital, in the house, in the bed, in the middle&#8230;</p>
+<figure id="attachment_3707" aria-describedby="caption-attachment-3707" style="width: 700px" class="wp-caption aligncenter"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20388'%3E%3C/svg%3E" alt="Giới từ In" width="700" height="388" class="size-full wp-image-3707" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in-300x166.jpg 300w" data-lazy-sizes="(max-width: 700px) 100vw, 700px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in.jpg" alt="Giới từ In" width="700" height="388" class="size-full wp-image-3707" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/in-300x166.jpg 300w" sizes="(max-width: 700px) 100vw, 700px" /></noscript><figcaption id="caption-attachment-3707" class="wp-caption-text">Giới từ In</figcaption></figure>
+<p>Cụm từ “in” còn được đặt trước các cụm từ chỉ thời gian dài như tháng, mùa, năm, thập kỷ, thiên niên kỷ,&#8230; Ví dụ: in the morning, in this week, in this summer, in February, in the past, in 2021, in the 19th century, in the 10th millennium,&#8230;</p>
+<p>Ngoài ra, “in” còn được dùng trong các trường hợp chỉ phương hướng, phương tiện đi lại. Ví dụ: in the bus station, in the South, in the North, in a city, in the company,&#8230;</p>
+<h3>Giới từ On</h3>
+<p>“On” có nghĩa là trên, ở trên. Trong khi giới từ “in” chỉ các địa điểm bao quát thì giới từ “on” dùng để chỉ các địa điểm cụ thể hơn như tên đường, nơi chốn, phương tiện đi lại công cộng hoặc cá nhân,&#8230; Ví dụ: on Nguyen Tat Thanh street, on a train, on a bus, on a plane, on a bicycle,&#8230;</p>
+<p>>>> Đọc thêm: <a href="https://giaotieptienganh.com.vn/chuyen-vien-tieng-anh-la-gi/">chuyên viên tiếng anh là gì ?</a></p>
+<figure id="attachment_3708" aria-describedby="caption-attachment-3708" style="width: 700px" class="wp-caption aligncenter"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20411'%3E%3C/svg%3E" alt="Cách dùng giới từ “On" width="700" height="411" class="size-full wp-image-3708" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on-300x176.jpg 300w" data-lazy-sizes="(max-width: 700px) 100vw, 700px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on.jpg" alt="Cách dùng giới từ “On" width="700" height="411" class="size-full wp-image-3708" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-on-300x176.jpg 300w" sizes="(max-width: 700px) 100vw, 700px" /></noscript><figcaption id="caption-attachment-3708" class="wp-caption-text">Cách dùng giới từ “On</figcaption></figure>
+<p>Đây là giới từ được sử dụng để chỉ các thời gian cụ thể như thứ, ngày trong tuần, nhân dịp nào đó hay ngày kỷ niệm, các ngày lễ có chứa từ “day”. Ví dụ: on Monday, on Sunday, on June 14th, on Valentine’s Day, on National day, on birthday, on Mother’s Day,&#8230;</p>
+<p>Bên cạnh đó, giới từ “on” còn được sử dụng để miêu tả vị trí tiếp xúc của đồ vật như on the tables, on the chair, on the cupboard, on the taskbar,&#8230; “On” đứng trước các cụm từ chỉ vị trí. Ví dụ: on the right, on the left, on the top, on the bellow,&#8230;</p>
+<p>Trong các trường hợp dùng để chỉ các loại máy móc, thiết bị hay một bộ phận nào đó ta cũng sử dụng giới từ này. Ví dụ: on the TV, on the smartphone, on your face,&#8230; Ngoài ra thì giới từ “on” còn được dùng để chỉ trạng thái của đồ vật như on sale, on fire,&#8230;</p>
+<h3>Giới từ At</h3>
+<figure id="attachment_3709" aria-describedby="caption-attachment-3709" style="width: 700px" class="wp-caption aligncenter"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20394'%3E%3C/svg%3E" alt="Giới từ At" width="700" height="394" class="size-full wp-image-3709" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at-300x169.jpg 300w" data-lazy-sizes="(max-width: 700px) 100vw, 700px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at.jpg" /><noscript><img src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at.jpg" alt="Giới từ At" width="700" height="394" class="size-full wp-image-3709" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at.jpg 700w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/gioi-tu-at-300x169.jpg 300w" sizes="(max-width: 700px) 100vw, 700px" /></noscript><figcaption id="caption-attachment-3709" class="wp-caption-text">Giới từ At</figcaption></figure>
+<p>“At” trong từ điển tiếng anh được hiểu theo nghĩa là ở, tại. Giới từ “at” sử dụng để chỉ các địa điểm có địa chỉ cụ thể hơn, dùng để chỉ nơi làm việc, học tập và sinh sống. Ví dụ như at home, at work, at school, at store, at the park&#8230;</p>
+<p>Giới từ “at” dùng để chỉ các khoảnh khắc, giờ trong ngày, các ngày lễ hoặc dịp đặc biệt không chứa từ “day”, hoặc đứng trước các từ có chứa “time”, “moment”. Ví dụ: at 7 a.m, at the moment, at lunch, at this time, at sunrise, at the weekend, at Lunar New Year,&#8230;</p>
+<p>Để tìm hiểu thêm về giới từ cũng như <a href="https://giaotieptienganh.com.vn/">học nói tiếng Anh</a>, bạn có thể tải ứng dụng Bitu để luyện tập. Đây là nền tảng luyện nghe và nói tiếng anh với người nước ngoài. Ứng dụng giúp bạn nâng cao khả năng sử dụng anh ngữ trong thời gian ngắn nhất.</p>
+<p>Trên đây là các trường hợp sử dụng <strong>giới từ in on at</strong> phổ biến nhất. Những kiến thức này sẽ giúp cho bạn sử dụng đúng các giới từ chỉ nơi chốn, thời gian trong giao tiếp. Hãy luyện tập và trau dồi thêm thật nhiều kiến thức để làm giàu vốn từ tiếng anh của bản thân mỗi ngày.</p>
+            </div>
+
+            
+            
+                    </div>
+    </div>
+</article>
+
+<div class="pagination-arrow">
+<div id="related_posts"><p class="ratels">Bài Viết Liên Quan</p><ul>
+<li><div class="relatedthumb"><a href="https://giaotieptienganh.com.vn/lien-tu-trong-tieng-anh/" title="Tổng hợp kiến thức về liên từ trong tiếng anh"><img width="300" height="200" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20200'%3E%3C/svg%3E" class="attachment-medium size-medium wp-post-image" alt="Tổng hợp kiến thức về liên từ trong tiếng anh" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1.jpg 800w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-300x200.jpg" /><noscript><img width="300" height="200" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Tổng hợp kiến thức về liên từ trong tiếng anh" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/lien-tu1.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" /></noscript></a></div>
+<span><a href="https://giaotieptienganh.com.vn/lien-tu-trong-tieng-anh/" title="Tổng hợp kiến thức về liên từ trong tiếng anh">Tổng hợp kiến thức về liên từ trong tiếng anh</a></span>
+</li>
+
+<li><div class="relatedthumb"><a href="https://giaotieptienganh.com.vn/van-ban-tieng-anh/" title="Hướng dẫn cách soạn thảo văn bản tiếng Anh từ A-Z"><img width="300" height="200" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20200'%3E%3C/svg%3E" class="attachment-medium size-medium wp-post-image" alt="Hướng dẫn cách soạn thảo văn bản tiếng Anh từ A-Z" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh.jpg 800w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-300x200.jpg" /><noscript><img width="300" height="200" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Hướng dẫn cách soạn thảo văn bản tiếng Anh từ A-Z" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/08/van-ban-tieng-anh.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" /></noscript></a></div>
+<span><a href="https://giaotieptienganh.com.vn/van-ban-tieng-anh/" title="Hướng dẫn cách soạn thảo văn bản tiếng Anh từ A-Z">Hướng dẫn cách soạn thảo văn bản tiếng Anh từ A-Z</a></span>
+</li>
+
+<li><div class="relatedthumb"><a href="https://giaotieptienganh.com.vn/cach-them-s-es/" title="Quy tắc thêm s es và cách phát âm chuẩn đuôi s, es"><img width="300" height="200" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20200'%3E%3C/svg%3E" class="attachment-medium size-medium wp-post-image" alt="Quy tắc thêm s es và cách phát âm chuẩn đuôi s, es" data-lazy-srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image.jpg 800w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-300x200.jpg" /><noscript><img width="300" height="200" src="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Quy tắc thêm s es và cách phát âm chuẩn đuôi s, es" srcset="https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-300x200.jpg 300w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image-768x512.jpg 768w, https://giaotieptienganh.com.vn/wp-content/uploads/2021/07/s-es-image.jpg 800w" sizes="(max-width: 300px) 100vw, 300px" /></noscript></a></div>
+<span><a href="https://giaotieptienganh.com.vn/cach-them-s-es/" title="Quy tắc thêm s es và cách phát âm chuẩn đuôi s, es">Quy tắc thêm s es và cách phát âm chuẩn đuôi s, es</a></span>
+</li>
+</ul></div></div><div id="comments" class="comments comments-area">
+	    <div class="leave-reply">
+			<div id="respond" class="comment-respond">
+		<div class="heading"><div class="heading-title-ft">Để lại một câu trả lời <small><a rel="nofollow" id="cancel-comment-reply-link" href="/gioi-tu-in-on-at/#respond" style="display:none;">Không trả lời</a></small></div><div class="heading-line"><span class="short-line"></span><span class="long-line"></span></div></div><form action="https://giaotieptienganh.com.vn/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p class="comment-notes  mb30">Địa chỉ email của bạn sẽ không được công bố.</p><div class="row"><div class="col-lg-6">
+				<input class="email input-standard-grey" name="author" id="author" placeholder="Tên của bạn" value="" type="text" required>		
+					</div>
+<div class="col-lg-6">
+		<input class="email input-standard-grey" name="email" id="email" placeholder="Email" value="" type="email" required>
+		</div></div>
+
+<div class="col-lg-12 mb30 remember-wrap"><div class="checkbox">
+                            <input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Lưu tên, email và trang web của tôi trong trình duyệt này cho lần tôi nhận xét tiếp theo.</label>
+                         </div></div>
+<div class="row"><div class="col-sm-12">
+		<textarea class="input-text input-standard-grey" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Nội dung bình luận"></textarea>
+		</div></div><div class="submit-block display-flex">
+									<div class="col-lg-4">
+										<button class="btn btn-small btn--primary">
+											<span class="text">Gửi</span>
+										</button>
+									</div>
+									<div class="col-lg-8">
+										<div class="submit-block-text">
+										Bạn có thể sử dụng các thẻ và thuộc tính HTML này:: 
+									<span> &lt;a href=""&gt; &lt;abbr&gt; &lt;acronym&gt;
+											&lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt;
+											&lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 
+											</span>
+										</div>
+									</div>
+								</div><p class="form-submit"><input name="submit" type="submit" id="submit" class="hide" value="Đăng bình luận" /> <input type='hidden' name='comment_post_ID' value='3703' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p></form>	</div><!-- #respond -->
+	    </div>
+</div><!-- #comments -->
+
+
+
+				</main><!-- #main -->
+			</div>
+							<div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-12">
+					
+<aside aria-label="sidebar" class="sidebar">
+	<aside id="seosight_latest_news-2" class="widget w-latest-news"><div class="crumina-heading widget-heading"><div class="h5-title">Bài Viết Mới Nhất</div><div class="heading-decoration"><span class="first"></span><span class="second"></span></div></div>	<div class="latest-news-wrap">
+					<article class="latest-news-item">
+				<header>
+					<div class="post-additional-info">
+						<span class="post__date"><i class="seoicon-clock"></i><time class="entry-date published updated" datetime="2021-11-05T06:53:36+00:00">5 Tháng Mười Một, 2021</time></span>					</div>
+					<h5 class="post__title entry-title" >
+						<a href="https://giaotieptienganh.com.vn/3-loai-cau-so-sanh-trong-tieng-anh/" >3 loại câu so sánh trong tiếng Anh</a>
+					</h5>
+				</header>
+			</article>
+
+					<article class="latest-news-item">
+				<header>
+					<div class="post-additional-info">
+						<span class="post__date"><i class="seoicon-clock"></i><time class="entry-date published updated" datetime="2021-10-26T09:42:23+00:00">26 Tháng Mười, 2021</time></span>					</div>
+					<h5 class="post__title entry-title" >
+						<a href="https://giaotieptienganh.com.vn/3-dang-cau-truc-cau-tuong-thuat-va-cach-su-dung/" >3 dạng cấu trúc câu tường thuật và cách sử dụng</a>
+					</h5>
+				</header>
+			</article>
+
+					<article class="latest-news-item">
+				<header>
+					<div class="post-additional-info">
+						<span class="post__date"><i class="seoicon-clock"></i><time class="entry-date published updated" datetime="2021-10-21T07:33:10+00:00">21 Tháng Mười, 2021</time></span>					</div>
+					<h5 class="post__title entry-title" >
+						<a href="https://giaotieptienganh.com.vn/bo-ba-chia-khoa-hoc-phat-am-giao-tiep-tieng-anh/" >Bộ ba &#8220;chìa khóa&#8221; học phát âm tiếng Anh &#8211; Liệu bạn đã biết?</a>
+					</h5>
+				</header>
+			</article>
+
+					<article class="latest-news-item">
+				<header>
+					<div class="post-additional-info">
+						<span class="post__date"><i class="seoicon-clock"></i><time class="entry-date published updated" datetime="2021-09-29T01:23:01+00:00">29 Tháng Chín, 2021</time></span>					</div>
+					<h5 class="post__title entry-title" >
+						<a href="https://giaotieptienganh.com.vn/truoc-danh-tu-la-gi/" >Các thành tố có thể xuất hiện trước danh từ là gì?</a>
+					</h5>
+				</header>
+			</article>
+
+					<article class="latest-news-item">
+				<header>
+					<div class="post-additional-info">
+						<span class="post__date"><i class="seoicon-clock"></i><time class="entry-date published updated" datetime="2021-09-27T02:39:37+00:00">27 Tháng Chín, 2021</time></span>					</div>
+					<h5 class="post__title entry-title" >
+						<a href="https://giaotieptienganh.com.vn/bo-ngu-la-gi/" >Bổ ngữ là gì? Cách sử dụng bổ ngữ trong tiếng anh</a>
+					</h5>
+				</header>
+			</article>
+
+					</div>
+</aside><aside id="seosight_categories-2" class="widget w-post-category"><div class="crumina-heading widget-heading"><div class="h5-title">Thể Loại</div><div class="heading-decoration"><span class="first"></span><span class="second"></span></div></div>	<ul class="post-category-wrap">
+					<li class="category-post-item">
+									<span class="post-count">36</span>
+								<a href="https://giaotieptienganh.com.vn/ngu-phap/" alt="View all posts in Ngữ Pháp"  class="category-title">Ngữ Pháp <i class="seoicon-right-arrow"></i></a>			</li>
+					<li class="category-post-item">
+									<span class="post-count">55</span>
+								<a href="https://giaotieptienganh.com.vn/tin-tuc/" alt="View all posts in Tin Tức"  class="category-title">Tin Tức <i class="seoicon-right-arrow"></i></a>			</li>
+					<li class="category-post-item">
+									<span class="post-count">8</span>
+								<a href="https://giaotieptienganh.com.vn/tu-vung/" alt="View all posts in Từ Vựng"  class="category-title">Từ Vựng <i class="seoicon-right-arrow"></i></a>			</li>
+			</ul>
+</aside></aside>
+
+				</div>
+					</div><!-- #row -->
+	</div><!-- #primary -->
+
+	
+	<!-- Subscribe Form -->
+<section id="subscribe-section" class="subscribe-section">
+    <div class="subscribe container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-5 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+				<script type="rocketlazyloadscript">(function() {
+	window.mc4wp = window.mc4wp || {
+		listeners: [],
+		forms: {
+			on: function(evt, cb) {
+				window.mc4wp.listeners.push(
+					{
+						event   : evt,
+						callback: cb
+					}
+				);
+			}
+		}
+	}
+})();
+</script><!-- Mailchimp for WordPress v4.8.6 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-2275" method="post" data-id="2275" data-name="Demo Data Form" ><div class="mc4wp-form-fields"><div class="subscribe-form form-subscribe">
+  <input type="email" name="EMAIL" placeholder="Nhập Email của bạn..." required />
+  <button type="submit" class="subscr-btn">Đăng ký<span class="semicircle--right"></span></button>
+</div></div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1684259162" /><input type="hidden" name="_mc4wp_form_id" value="2275" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /><div class="mc4wp-response"></div></form><!-- / Mailchimp for WordPress Plugin -->            </div>
+			            <div class="images-block not-animated">
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2058%2057'%3E%3C/svg%3E" width="58" height="57" alt="gear" class="gear" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-gear.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-gear.png" width="58" height="57" alt="gear" class="gear"></noscript>
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20470%20290'%3E%3C/svg%3E" width="470" height="290" alt="mail" class="mail" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr1.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr1.png" width="470" height="290" alt="mail" class="mail"></noscript>
+                <img loading="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20138%20133'%3E%3C/svg%3E" width="138" height="133" alt="mailopen" class="mail-2" data-lazy-src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-mailopen.png"><noscript><img loading="lazy" src="https://giaotieptienganh.com.vn/wp-content/themes/seosight/images/animated/subscr-mailopen.png" width="138" height="133" alt="mailopen" class="mail-2"></noscript>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Subscribe Form -->
+
+    </div><!-- ! .content-wrapper Close -->
+    <!-- Footer -->
+    <footer id="site-footer" class="footer ">
+        <div class="container">
+			            <div class="row info">
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+					                        <div class="crumina-heading widget-heading">
+							                                <div class="footer-title">Liên hệ</div>
+                                <div class="heading-decoration"><span class="first"></span><span class="second"></span>
+                                </div>
+								                                <div class="heading-text">
+									<p>Email: support@giaotieptienganh.com.vn</p>
+<p>Phone: 0981115411 - 0904565411</p>
+<p>Địa chỉ: Tầng 10, Tháp D, Tòa Gold Tower, số 275 Nguyễn Trãi, Thanh Xuân Trung, Thanh Xuân, Hà Nội.</p>
+                                </div>
+							                        </div>
+										                       <!--  <div class="socials">
+                            <link href=""/>
+							                        </div> -->
+					                </div>
+
+								                    <div class="col-lg-offset-1 col-md-offset-1 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+							<aside id="seosight_menus-2" class="widget w-custom-menu col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="crumina-heading widget-heading"><div class="footer-title">Thông Tin</div><div class="heading-decoration"><span class="first"></span><span class="second"></span></div></div>	<div class="menus-wrap ovh">
+		<ul id="menu-footer-menu" class="list--traingle full-width"><li><a rel="nofollow" href="https://giaotieptienganh.com.vn/gioi-thieu/"><i class="fa fa-caret-right" aria-hidden="true"></i>Giới Thiệu</a></li>
+<li><a rel="nofollow" href="https://giaotieptienganh.com.vn/dieu-khoan-dich-vu/"><i class="fa fa-caret-right" aria-hidden="true"></i>Điều Khoản Dịch Vụ</a></li>
+<li><a rel="nofollow" href="https://giaotieptienganh.com.vn/lien-he/"><i class="fa fa-caret-right" aria-hidden="true"></i>Liên Hệ</a></li>
+</ul>	</div>
+</aside>                        </div>
+                    </div>
+								            </div>
+					        </div>
+		            <div class="sub-footer medium">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <span class="site-copyright-text">
+        <a target="_blank" rel="nofollow noopener" href="//www.dmca.com/Protection/Status.aspx?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" class="dmca-badge"> <img width="135" height="28" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20135%2028'%3E%3C/svg%3E" alt="DMCA.com Protection Status" data-lazy-src="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" /><noscript><img width="135" height="28" src="https://images.dmca.com/Badges/_dmca_premi_badge_5.png?ID=952d18ac-708b-473b-b8c3-c277b29a36dc" alt="DMCA.com Protection Status" /></noscript></a>   </br></br>2021 © Giaotieptienganh.com.vn                             </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		
+		            <div class="back-to-top " style="width:40px; height:40px; "  >
+				                    <svg>
+                        <use xlink:href="#to-top"></use>
+                    </svg>
+				            </div>
+		
+    </footer>
+
+    <!-- End Footer -->
+    <svg class="hide">
+        <symbol id="arrow-left" viewBox="122.9 388.2 184.3 85">
+            <path d="M124.1,431.3c0.1,2,1,3.8,2.4,5.2c0,0,0.1,0.1,0.1,0.1l34.1,34.1c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4
+              c1.6-1.6,2.4-3.7,2.4-5.9s-0.9-3.9-2.4-5.5l-19.9-19.5h11.1c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3h-17.6c-1.1,0-2.1,0.6-2.5,1.6
+              c-0.4,1-0.2,2.1,0.6,2.9l24.4,24.4c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9
+              l-34.2-34.2c0,0,0,0,0,0c-0.6-0.6-0.8-1.4-0.9-1.9c0,0,0,0,0,0c0-0.2,0-0.4,0-0.6c0.1-0.6,0.3-1.1,0.7-1.6c0-0.1,0.1-0.1,0.2-0.2
+              l34.1-34.1c0.6-0.6,1.3-0.9,2.1-0.9s1.6,0.3,2.1,0.9c0.6,0.6,0.9,1.3,0.9,2.1s-0.3,1.6-0.9,2.1l-24.4,24.4c-0.8,0.8-1,2-0.6,3
+              c0.4,1,1.4,1.7,2.5,1.7h125.7c1.5,0,2.7-1,2.7-2.5c0-1.5-1.2-2.5-2.7-2.5H152.6l19.9-20.1c1.6-1.6,2.4-3.8,2.4-6s-0.9-4.4-2.4-6
+              c-1.6-1.6-3.7-2.5-5.9-2.5s-4.3,0.9-5.9,2.4l-34.1,34.1c-0.2,0.2-0.3,0.3-0.5,0.5c-1.1,1.2-1.8,2.8-2,4.4
+              C124.1,430.2,124.1,430.8,124.1,431.3C124.1,431.3,124.1,431.3,124.1,431.3z"></path>
+            <path d="M283.3,427.9h14.2c1.7,0,3,1.3,3,3c0,1.7-1.4,3-3,3H175.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h122.4
+              c4.6,0,8.4-3.9,8.4-8.5c0-4.6-3.8-8.5-8.4-8.5h-14.2c-1.5,0-2.7,1-2.7,2.5C280.7,426.9,281.8,427.9,283.3,427.9z"></path>
+        </symbol>
+        <symbol id="arrow-right" viewBox="122.9 388.2 184.3 85">
+            <path d="M305.9,430.2c-0.1-2-1-3.8-2.4-5.2c0,0-0.1-0.1-0.1-0.1l-34.1-34.1c-1.6-1.6-3.7-2.5-5.9-2.5c-2.2,0-4.3,0.9-5.9,2.4
+              c-1.6,1.6-2.4,3.7-2.4,5.9s0.9,4.1,2.4,5.7l19.9,19.6h-11.1c-1.5,0-2.7,1.5-2.7,3c0,1.5,1.2,3,2.7,3h17.6c1.1,0,2.1-0.7,2.5-1.7
+              c0.4-1,0.2-2.2-0.6-2.9l-24.4-24.5c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1c0.6-0.6,1.3-0.9,2.1-0.9c0.8,0,1.6,0.3,2.1,0.9
+              l34.2,34.2c0,0,0,0,0,0c0.6,0.6,0.8,1.4,0.9,1.9c0,0,0,0,0,0c0,0.2,0,0.4,0,0.6c-0.1,0.6-0.3,1.1-0.7,1.6c0,0.1-0.1,0.1-0.2,0.2
+              l-34.1,34.1c-0.6,0.6-1.3,0.9-2.1,0.9s-1.6-0.3-2.1-0.9c-0.6-0.6-0.9-1.3-0.9-2.1s0.3-1.6,0.9-2.1l24.4-24.4c0.8-0.8,1-1.9,0.6-2.9
+              c-0.4-1-1.4-1.6-2.5-1.6H158.1c-1.5,0-2.7,1-2.7,2.5c0,1.5,1.2,2.5,2.7,2.5h119.3l-19.9,20c-1.6,1.6-2.4,3.7-2.4,6s0.9,4.4,2.4,5.9
+              c1.6,1.6,3.7,2.5,5.9,2.5s4.3-0.9,5.9-2.4l34.1-34.1c0.2-0.2,0.3-0.3,0.5-0.5c1.1-1.2,1.8-2.8,2-4.4
+              C305.9,431.3,305.9,430.8,305.9,430.2C305.9,430.2,305.9,430.2,305.9,430.2z"></path>
+            <path d="M146.7,433.9h-14.2c-1.7,0-3-1.3-3-3c0-1.7,1.4-3,3-3h122.4c1.5,0,2.7-1.5,2.7-3c0-1.5-1.2-3-2.7-3H132.4
+              c-4.6,0-8.4,3.9-8.4,8.5c0,4.6,3.8,8.5,8.4,8.5h14.2c1.5,0,2.7-1,2.7-2.5C149.3,434.9,148.1,433.9,146.7,433.9z"></path>
+        </symbol>
+            <symbol id="to-top" viewBox="0 0 32 32">
+                <path d="M17,22 L25.0005601,22 C27.7616745,22 30,19.7558048 30,17 C30,14.9035809 28.7132907,13.1085075 26.8828633,12.3655101
+                  L26.8828633,12.3655101 C26.3600217,9.87224935 24.1486546,8 21.5,8 C20.6371017,8 19.8206159,8.19871575 19.0938083,8.55288165
+                  C17.8911816,6.43144875 15.6127573,5 13,5 C9.13400656,5 6,8.13400656 6,12 C6,12.1381509 6.00400207,12.275367 6.01189661,12.4115388
+                  L6.01189661,12.4115388 C4.23965876,13.1816085 3,14.9491311 3,17 C3,19.7614237 5.23249418,22 7.99943992,22 L16,22 L16,16 L12.75,19.25
+                  L12,18.5 L16.5,14 L21,18.5 L20.25,19.25 L17,16 L17,22 L17,22 Z M16,22 L16,27 L17,27 L17,22 L16,22 L16,22 Z"
+                      id="cloud-upload"></path>
+            </symbol>
+
+    </svg>
+	<!-- <script type="rocketlazyloadscript" src="https://belife.vn/Areas/Preview/Scripts/AckGen/addon-ofs.js"></script> -->
+<script type="rocketlazyloadscript">(function() {function maybePrefixUrlField() {
+	if (this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+		this.value = "http://" + this.value;
+	}
+}
+
+var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+if (urlFields) {
+	for (var j=0; j < urlFields.length; j++) {
+		urlFields[j].addEventListener('blur', maybePrefixUrlField);
+	}
+}
+})();</script><script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/giaotieptienganh.com.vn","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type='text/javascript' id='fw-form-helpers-js-extra'>
+/* <![CDATA[ */
+var fwAjaxUrl = ["\/wp-admin\/admin-ajax.php"];
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/fw-form-helpers.js?ver=1655952168' id='fw-form-helpers-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=5.3.6' id='swiper-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/theme-plugins.js?ver=1655952168' id='seosight-plugins-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/themes/seosight/js/main.js?ver=1655952168' id='seosight-main-script-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-includes/js/comment-reply.min.js?ver=5.8.6' id='comment-reply-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/velocity.min.js?ver=1.2.3' id='velocity-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/ScrollMagic.min.js?ver=2.0.5' id='scrollmagic-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://giaotieptienganh.com.vn/wp-content/themes/seosight/js/animation.velocity.min.js?ver=2.0.5' id='scrollmagic-velocity-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' defer src='https://giaotieptienganh.com.vn/wp-content/cache/min/1/wp-content/plugins/mailchimp-for-wp/assets/js/forms.js?ver=1655952168' id='mc4wp-forms-api-js'></script>
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://giaotieptienganh.com.vn/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script><!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NH5MKQW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<script type="rocketlazyloadscript">"use strict";var wprRemoveCPCSS=function wprRemoveCPCSS(){var elem;document.querySelector('link[data-rocket-async="style"][rel="preload"]')?setTimeout(wprRemoveCPCSS,200):(elem=document.getElementById("rocket-critical-css"))&&"remove"in elem&&elem.remove()};window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela%20Round%3A400&#038;subset=vietnamese&#038;display=swap" /><link rel="stylesheet" href="https://giaotieptienganh.com.vn/wp-content/cache/min/1/655b66c4988fc2d92a129eb26c312f34.css" media="all" data-minify="1" /></noscript></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1684259163 -->
