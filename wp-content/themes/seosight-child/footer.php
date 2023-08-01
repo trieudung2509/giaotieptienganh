@@ -122,12 +122,16 @@
           <p class="text-center">Download app Bitu</p>
           <ul class="row g-0 align-items-center">
             <li class="col-6">
-              <a class="over" href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/img_download_ios.png" alt="download Apple Store"
-                  class="w-100"></a>
+              <a class="over"
+                href="https://apps.apple.com/by/app/bitu-luy%E1%BB%87n-n%C3%B3i-ti%E1%BA%BFng-anh/id1551918315"><img
+                  src="<?php echo get_stylesheet_directory_uri(); ?>/images/img_download_ios.png"
+                  alt="download Apple Store" class="w-100"></a>
             </li>
             <li class="col-6">
-              <a class="over" href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/img_download_android.png" alt="download Google Play"
-                  class="w-100"></a>
+              <a class="over"
+                href="https://play.google.com/store/apps/details?id=com.bitu.user&amp;utm_source=bituweb&amp;utm_medium=landingpage&amp;utm_campaign=official"><img
+                  src="<?php echo get_stylesheet_directory_uri(); ?>/images/img_download_android.png"
+                  alt="download Google Play" class="w-100"></a>
             </li>
           </ul>
         </div>
@@ -137,8 +141,10 @@
         <div class="row align-items-center">
           <div class="col-md-6 d-none d-md-block">
             <a href="#" class="footer-logo over">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo_white.svg" alt="Bitu" class="d-none d-md-inline-block">
-              <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo_sp_white.png" alt="Bitu" class="d-inline-block d-md-none">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo_white.svg" alt="Bitu"
+                class="d-none d-md-inline-block">
+              <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo_sp_white.png" alt="Bitu"
+                class="d-inline-block d-md-none">
             </a>
           </div>
 

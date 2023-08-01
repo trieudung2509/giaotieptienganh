@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -12,7 +11,8 @@
 
   <!-- STYLESHEET -->
   <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome-all.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="<?php echo get_stylesheet_directory_uri(); ?>/css/font-awesome-all.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/slick.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/main.css">
@@ -27,11 +27,13 @@
 		script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
 		-->
 </head>
-<body>
-<?php get_header(); ?>
-<!-- /END .main-header -->
 
-<!-- /END .offcanvas -->  <!-- BANNER START -->
+<body>
+  <?php get_header(); ?>
+  <!-- /END .main-header -->
+
+  <!-- /END .offcanvas -->
+  <!-- BANNER START -->
   <div class="banner-wrapper">
     <div class="container">
       <div class="banner-content">
@@ -287,6 +289,7 @@
                 <span class="step-number">1</span>
                 <h3 class="step-title">Tâm lý ngại nói và xấu hổ vì phát âm tiếng Anh sai</h3>
                 <div class="step-content step-content-2 primary ">
+                  <div class="arrow"></div>
                   <h3 class="step-title max-266">Học 1 kèm 1 với giáo viên nước ngoài</h3>
                   <ul class="list-detail">
                     <li>
@@ -302,7 +305,8 @@
                       <span>Tăng tốc độ phản xạ nhờ được tương tác xuyên suốt buổi học.</span>
                     </li>
                   </ul>
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-1.png" class="resolve-icon resolve-icon-1" />
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-1.png"
+                    class="resolve-icon resolve-icon-1" />
                 </div>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-arrow.png" class="arrow-icon" />
               </div>
@@ -313,6 +317,7 @@
                 <span class="step-number">2</span>
                 <h3 class="step-title">Nghe, hiểu tiếng Anh nhưng không nói được.</h3>
                 <div class="step-content step-content-2 warning">
+                  <div class="arrow"></div>
                   <h3 class="step-title max-266">Hơn 10.000 chủ đề luyện nói đa dạng</h3>
                   <ul class="list-detail">
                     <li>
@@ -328,7 +333,8 @@
                       <span>Hỗ trợ công cụ ghi nhớ ngữ pháp và từ vựng.</span>
                     </li>
                   </ul>
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-2.png" class="resolve-icon resolve-icon-2" />
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-2.png"
+                    class="resolve-icon resolve-icon-2" />
                 </div>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-arrow.png" class="arrow-icon" />
               </div>
@@ -341,6 +347,7 @@
                 <span class="step-number">3</span>
                 <h3 class="step-title">Bận rộn nên khó sắp xếp được lịch học</h3>
                 <div class="step-content step-content-2 info ">
+                  <div class="arrow"></div>
                   <h3 class="step-title max-266">Không cần đặt lịch học trước</h3>
                   <ul class="list-detail">
                     <li>
@@ -356,7 +363,8 @@
                       <span>Giá chỉ từ 83k/buổi học, tiết kiệm 60% học phí so với trung tâm</span>
                     </li>
                   </ul>
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-3.png" class="resolve-icon resolve-icon-3" />
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-3.png"
+                    class="resolve-icon resolve-icon-3" />
                 </div>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-arrow.png" class="arrow-icon" />
               </div>
@@ -367,6 +375,7 @@
                 <span class="step-number">4</span>
                 <h3 class="step-title">Thiếu môi trường giao tiếp thường xuyên</h3>
                 <div class="step-content step-content-2 danger">
+                  <div class="arrow"></div>
                   <h3 class="step-title white-title max-266">Group Talk - Nhóm luyện nói giữa các học viên</h3>
                   <ul class="list-detail">
                     <li>
@@ -383,7 +392,8 @@
                       <span class="white-title">Các nhóm trao đổi hoàn toàn miễn phí</span>
                     </li>
                   </ul>
-                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-4.png" class="resolve-icon resolve-icon-4" />
+                  <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/resolve-icon-4.png"
+                    class="resolve-icon resolve-icon-4" />
                 </div>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/icon-arrow.png" class="arrow-icon" />
               </div>
@@ -528,7 +538,8 @@
             </div>
           </div>
           <div class="right-content">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/receive-from-bitu-image.png" class="receive-from-bitu-image" />
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/receive-from-bitu-image.png"
+              class="receive-from-bitu-image" />
           </div>
         </div>
       </div>
@@ -603,7 +614,8 @@
         </div>
         <button class="register-btn" data-bs-toggle="modal" data-bs-target="#registerNowModal">Học thử miễn phí</button>
 
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bitu-program-image.png" class="bitu-program-image" />
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bitu-program-image.png"
+          class="bitu-program-image" />
       </div>
     </div>
   </div>
@@ -724,8 +736,10 @@
           <div class="list-teacher-slider">
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-1.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-1.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Roselyn Masucol</h4>
               <p class="info">Certificate: TEFL</p>
@@ -733,8 +747,10 @@
             </div>
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-2.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-2.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Jeffrey Celestial Denila</h4>
               <p class="info">Certificate: TEFL</p>
@@ -742,8 +758,10 @@
             </div>
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-3.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-3.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Nicole Cate Tibon</h4>
               <p class="info">Certificate: TEFL</p>
@@ -751,9 +769,12 @@
             </div>
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-4.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-1.png" class="badge-image badge-image-1" />
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-4.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-1.png"
+                  class="badge-image badge-image-1" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Patriz Lenn G. Peñarubia</h4>
               <p class="info">Certificate: TEFL, TESOL</p>
@@ -762,8 +783,10 @@
             </div>
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-5.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-5.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Mzukisi Gaju</h4>
               <p class="info">Certificate: TEFL</p>
@@ -771,9 +794,12 @@
             </div>
             <div class="slider-item">
               <div class="avatar-wrapper">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-6.png" alt="" class="teacher-avatar">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-1.png" class="badge-image badge-image-1" />
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png" class="badge-image badge-image-2" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/teacher-6.png" alt=""
+                  class="teacher-avatar">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-1.png"
+                  class="badge-image badge-image-1" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/badge-2.png"
+                  class="badge-image badge-image-2" />
               </div>
               <h4 class="teacher-name">Viel Anna Baterisna</h4>
               <p class="info">Certificate: TEFL, TESOL</p>
@@ -845,7 +871,8 @@
             <div class="feed-back-item-video">
               <div class="video-item">
                 <div class="video-content">
-                  <video class="video-element" poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-1.png">
+                  <video class="video-element"
+                    poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-1.png">
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-1.webm" type="video/mp4" />
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-1.webm" type="video/webm" />
                     Your browser does not support the video tag.
@@ -877,7 +904,8 @@
             <div class="feed-back-item-video">
               <div class="video-item">
                 <div class="video-content">
-                  <video class="video-element" poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-2.png">
+                  <video class="video-element"
+                    poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-2.png">
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-2.webm" type="video/mp4" />
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-2.webm" type="video/webm" />
                     Your browser does not support the video tag.
@@ -910,7 +938,8 @@
             <div class="feed-back-item-video">
               <div class="video-item">
                 <div class="video-content">
-                  <video class="video-element" poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-3.png">
+                  <video class="video-element"
+                    poster="<?php echo get_stylesheet_directory_uri(); ?>/images/thumb-3.png">
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-3.webm" type="video/mp4" />
                     <source src="<?php echo get_stylesheet_directory_uri(); ?>/images/video-3.webm" type="video/webm" />
                     Your browser does not support the video tag.
@@ -1066,16 +1095,16 @@
   </div>
   <!-- /END registerNowModal -->
   <?php get_footer(); ?>
-<!-- /.main-footer -->
+  <!-- /.main-footer -->
 
-<!-- JAVASCRIPT-->
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-3.3.1.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-ui.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/popper.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/slick.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.magnific-popup.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/main.js"></script>
+  <!-- JAVASCRIPT-->
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-3.3.1.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-ui.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/popper.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/slick.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.magnific-popup.min.js"></script>
+  <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/main.js"></script>
   <script>
   var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 

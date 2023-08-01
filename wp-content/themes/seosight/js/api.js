@@ -2,7 +2,7 @@ $(document).ready(function () {
   // call api here
 
   const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const PHONE_REGEX = /^(0\d{9})$/;
+  const PHONE_REGEX = /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/;
   const options = {
     1: "Học thử 1 buổi miễn phí",
     2: "Khóa học nhanh (Giảm 30%): 599.000đ",
