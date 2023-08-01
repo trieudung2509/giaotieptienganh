@@ -1046,7 +1046,6 @@
   width: calc((100% - 210px) / 3);
   height: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
@@ -1237,7 +1236,6 @@
   min-width: 100%;
   max-width: 100%;
   height: 424px;
-  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
 }
 .feed-back-by-student-wrapper .feed-back-by-student-content .list-feedback .feedback-item .student-name {
   margin: 24px 0px 8px;

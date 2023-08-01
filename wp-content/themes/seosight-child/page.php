@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link data-n-head="ssr" rel="icon" type="image/x-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.ico">
+  <link data-n-head="ssr" rel="icon" type="image/x-icon"
+    href="<?php echo get_stylesheet_directory_uri(); ?>/images/favicon.ico">
 
   <!-- STYLESHEET -->
   <link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/css/bootstrap.min.css">
@@ -552,7 +553,7 @@
     <div class="container">
       <div class="program-from-bitu-content">
         <h2 class="title">Các chương trình học 1 kèm 1</h2>
-        <p class="description">cam kết đầu ra chuẩn CERF cho người lớn và chuẩn cambridge cho trẻ em</p>
+        <p class="description">Cam kết đầu ra chuẩn CERF cho người lớn và chuẩn cambridge cho trẻ em</p>
         <div class="list-program">
           <div class="program-item">
             <span class="time">1 tháng - 12 buổi</span>
