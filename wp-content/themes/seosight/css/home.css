@@ -501,6 +501,11 @@
   .bitu-resolve-wrapper .bitu-resolve-content .step-block .step-number {
     font-size: 40px;
     box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    top: -10px;
+    left: -8px;
+    min-width: 62px;
+    max-width: 62px;
+    height: 62px;
   }
 }
 .bitu-resolve-wrapper .bitu-resolve-content .step-block .step-title {
