@@ -194,10 +194,10 @@
 <!-- /.main-footer -->
 
 <!-- JAVASCRIPT-->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/main.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-3.3.1.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery-ui.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/popper.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/slick.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.magnific-popup.min.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/main.js"></script>
